@@ -1,0 +1,27 @@
+
+
+.dashboard__panel {
+    width: 20vw;
+    padding: 15px 10px;
+    height: 100vh;
+    background:  #0F172A;
+    box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.dashboard__buttons {
+    gap: 20px;
+
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+}
+.dashboard__top {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: #CAFF33 1px solid;
+}

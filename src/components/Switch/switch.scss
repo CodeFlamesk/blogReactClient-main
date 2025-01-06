@@ -1,0 +1,46 @@
+.switch {
+    // .switch__body
+    &__body {
+        border: 1px solid rgb(38, 38, 38);
+        border-radius: 10px;
+        background: rgb(20, 20, 20);
+        gap: 10px;
+        display: flex;
+        padding: 10px;
+        @media(max-width:487.98px){
+            flex-wrap: wrap;
+            min-width: 100%;
+        }
+    }
+    // .switch__item
+    &__item {
+        transition: all 0.3s ease 0s;
+        border: 1px solid rgb(38, 38, 38);
+        border-radius: 8px;
+        padding: 18px 38px 18px 38px;
+        letter-spacing: -3%;
+        &._active {
+            border: 1px solid rgb(38, 38, 38);
+            border-radius: 10px;
+            color: rgb(255, 255, 255);
+            background: rgb(38, 38, 38);
+        }
+        @media(max-width:767.98px){
+            padding: 14px 24px 14px 24px;
+        }
+        @media(max-width:487.98px){
+            padding: 14px;
+            width: 100%;
+        }
+        @media(hover:hover) {
+            &:hover {
+            cursor: pointer;
+            border: 1px solid rgb(38, 38, 38);
+                border-radius: 10px;
+                color: rgb(255, 255, 255);
+                background: rgb(38, 38, 38);
+            }
+        }
+    }
+}
+

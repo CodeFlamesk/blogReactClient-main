@@ -1,0 +1,151 @@
+
+.main-real {
+
+// .main-real__container
+
+&__container {
+}
+
+// .main-real__items
+
+&__items {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    @media(max-width:991.98px){
+        grid-template-columns: repeat(2,1fr);
+    }
+    @media(max-width:600.98px){
+        grid-template-columns: repeat(1,1fr);
+    }
+
+}
+
+// .main-real__item
+
+&__item {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 50px;
+    align-items: center;
+    
+    border-top: 0.8px solid  #262626;
+    @media(min-width:991.98px){
+        &:nth-child(3n + 1) {
+            border-right: 1px solid  #262626;
+            
+        }
+        &:nth-child(3n + 2) {
+            border-right: 1px solid  #262626;
+        }
+    }
+    @media(max-width:1280.98px){
+        padding: 60px 40px;
+    }
+    @media(max-width:991.98px){
+        padding: 30px 25px;
+        &:nth-child(odd) {
+            border-right: 1px solid  #262626;
+        }
+    }
+    @media(max-width:600.98px) {
+        &:nth-child(odd) {
+            border-right: 0px solid  #262626;
+        }
+    }
+    @media(max-width:487.98px){
+        padding: 40px 0px;
+    }
+}
+
+// .main-real__person
+
+&__person {
+    &:not(:last-child){
+        margin-bottom:40px;
+        @media(max-width:1280.98px){
+            margin-bottom: 30px;
+        }
+    }
+}
+
+
+
+// .main-real__text
+
+&__text {
+    z-index: 2;
+    position: relative;
+    padding: 50px 30px 30px 30px;
+    color: #FFF;
+    border-radius: 12px;
+    border: 1px solid  #262626;
+    background:  #1A1A1A;
+    text-align: center;
+    @media(max-width:1280.98px){
+        padding: 40px 24px 24px 24px;
+        font-size: 16px;
+    }
+    @media(max-width:767.98px){
+        font-size: 14px;
+        padding: 30px 20px 20px 20px;
+    }
+    transition: all 0.3s ease 0s;
+    @media(hover:hover) {
+        &:hover {
+            cursor: pointer;
+            box-shadow:3px 3px 4px rgb(255, 209, 26, 0.5);
+        }
+    }
+}
+}
+
+
+.person {
+
+    // .person__image
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    @media(max-width:1280.98px){
+        gap: 10px;
+    }
+    &__image {
+        width:  60px;
+        height: 60px;
+        border-radius: 50%;
+        @media(max-width:1280.98px){
+            width: 50px;
+            height: 50px;
+            img {
+                max-width: 100%;
+            }
+            }
+    }
+
+    // .person__info
+
+    &__info {
+    }
+
+    // .person__title
+
+    &__title {
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 500;
+        @media(max-width:1280.98px){
+            font-size: 18px;
+        }
+    }
+
+    // .person__text
+
+    &__text {
+        color: #666;
+        @media(max-width:1280.98px){
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+
+
+
+.not-found__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+    text-align: center;
+}
+.not-found__content {
+    gap: 20px;
+    width: 100%;
+    padding: 50px 0px ;
+    border-bottom: 2px solid #262626;
+    display: flex;
+    justify-content: space-between;
+    @media(max-width:767.98px){
+        flex-direction: column;
+        padding: 30px 0px;
+        
+    }
+
+}
+.not-found__image {
+    img {
+        max-width: 100%;
+    }
+}
+.not-found-404 {
+    font-size: 260px;
+    @media(max-width:767.98px){
+        font-size: 200px;
+    }
+    @media(max-width:487.98px){
+        font-size: 130px;
+    }
+}
+.button-page-not {
+    margin-top: 25px;
+    max-width: fit-content;
+}

@@ -1,0 +1,25 @@
+.input-item {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    &::placeholder  {
+        color: rgb(102, 102, 102);
+        @media(max-width:991.98px){
+            font-size: 16px;
+        }
+        @media(max-width:487.98px){
+            font-size: 14px;
+        }
+    }
+    @media(max-width:1280.98px){
+        padding: 16px;
+    }
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 12px;
+    background: rgb(26, 26, 26);
+    color: rgb(255, 209, 26);
+    &:focus {
+        border: 1px solid rgb(255, 209, 26);
+        outline: none;
+    }
+}

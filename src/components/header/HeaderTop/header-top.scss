@@ -1,0 +1,35 @@
+.header-top {
+    position: relative;
+    z-index: 152 !important;
+    border-bottom: 1px solid  #262626;
+    // .header-top__link
+    padding: 20px 10px;
+    background:  #141414;
+    display: flex;
+    justify-content: center;
+    letter-spacing: -0.54px;
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        i {
+            transform: rotate(140deg);
+            color:#FFD11A;
+        }
+        @media(max-width:1280.98px){
+            font-size: 16px;
+        }
+        @media(max-width:991.98px){
+            font-size: 14px;
+        }
+        @media(max-width:767.98px){
+            font-size: 12px;
+        }
+    }
+    @media(max-width:1280.98px){
+        padding: 12px 10px;
+    }
+    @media(max-width:487.98px){
+        letter-spacing: -0.36px;
+    }
+}

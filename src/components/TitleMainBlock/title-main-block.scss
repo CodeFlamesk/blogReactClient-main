@@ -1,0 +1,83 @@
+.main-news__body {
+    border-bottom: 1px solid  #262626 ;
+    padding: 130px 0px 150px 0px ;
+  }
+  .main-news__title {
+    gap: 20px;
+    display: flex ;
+    flex-direction: column ;
+  }
+ 
+
+
+  .title-80 {
+    color:  #FFF;
+    font-family: "Kumbh Sans" !important;
+    font-size: 80px ;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 130% !important; /* 104px */
+    letter-spacing: -2.4px !important;
+  }
+  .title-80-text {
+    color: rgb(152, 152, 154);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0px !important;
+    text-align: left;
+  }
+
+
+  .main-news__sub-title h2{
+    white-space: nowrap;
+  }
+  .main-news__sub-title  {
+    display: inline-flex ;
+  }
+  @media(max-width:1280.98px){
+    .main-news__body {
+      padding: 80px 0px 100px 0px ;
+    }
+    .title-80 {
+      font-size: 55px ;
+      letter-spacing: -1.65px ;
+    }
+    .title-80-text {
+      font-size: 16px;
+    }
+    .main-news__sub-title h2{
+      white-space: wrap;
+    }
+  }
+  @media(max-width:991.98px){
+    .main-news__body {
+      padding: 60px 0px ;
+    }
+  
+  }
+  
+  @media(max-width:767.98px){
+    .main-news__body {
+      padding: 40px 0px ;
+    }
+    .main-news__title {
+      gap: 14px ;
+    }
+    .title-80 {
+      font-size: 28px;
+      letter-spacing: -0.84px ;
+    }
+    
+    .title-80-text {
+      font-size: 14px;
+    }
+  }
+  @media(min-width:767.98px){
+    .main-news__sub-title {
+      align-items: center;
+      gap: 80px ;
+      display: flex;
+    }
+  }
+  

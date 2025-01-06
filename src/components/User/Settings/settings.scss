@@ -1,0 +1,13 @@
+.settings-body {
+    display: flex;
+
+}
+.settings-body__panel {
+    flex: 0 1 25%;
+    border-right: 1px solid #262626;
+}
+
+.settings-body__content {
+    flex: 0 1 75%;
+    
+}

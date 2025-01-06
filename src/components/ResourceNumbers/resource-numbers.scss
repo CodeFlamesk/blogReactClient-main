@@ -1,0 +1,59 @@
+.states {
+
+    // .states__container
+
+    &__container {
+    }
+
+    // .states__items
+
+    &__items {
+        @media(max-width:487.98px){
+            padding: 20px 0px;
+        }
+
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        @media(max-width:800.98px){
+            grid-template-columns: repeat(2,1fr);
+        }
+        @media(max-width:487.98px){
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+
+    // .states__item
+
+    &__item {
+        padding: 80px ;
+        @media(max-width:1280.98px){
+            padding: 60px;
+        }
+        @media(max-width:1100.98px){
+            padding: 60px;
+        }
+        @media(max-width:991.98px){
+            padding: 30px 40px;
+        }
+        @media(min-width:800.98px){
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+                border-right: 1px solid rgb(38, 38, 38);
+            }
+        }
+        @media(max-width:800.98px) {
+            &:nth-child(odd) {
+                border-right: 1px solid rgb(38, 38, 38);
+                @media(max-width:487.98px){
+                    border-right: 0px solid rgb(38, 38, 38);
+                }
+            }
+            border-bottom: 1px solid rgb(38, 38, 38);
+        }
+        @media(max-width:487.98px){
+            padding: 20px;
+        }
+        
+    }
+}
