@@ -1,2 +1,2 @@
-export const _API_URL = "https://blogreactserver.onrender.com/api";
-export const _URL_SERVER = "https://blogreactserver.onrender.com/"
+export const _API_URL = "http://localhost:5000/api";
+export const _URL_SERVER = "http://localhost:5173/"
