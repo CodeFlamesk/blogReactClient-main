@@ -14,7 +14,7 @@ const Dashboard = () => {
         <div className="dashboard">
             <DashboardPanel/>
             <div className="dashboard__right">
-                {panel === "dashboard" && <DashboardItemAddPodcast/>}
+                                {panel === "dashboard" && <DashboardItemAddPodcast/>}
                 {panel === "news" && <DashboardAddNews/>}
                 {panel === "category" && <DashboardCategory/>}
             </div>

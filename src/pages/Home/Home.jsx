@@ -1,69 +1,24 @@
-import HomeMainBlock from "components/HomeMainBlock/HomeMainBlock"
 
-import Reviews from "components/Reviews/Reviews"
+import './home.scss'
+import logo from './img/logo-stmg.png'
 
-
-import future from "./img/future.png"
-import research from "./img/research.png"
-
-const data = [
-	{
-		title: "Future Technology Blog",
-		text:"Stay informed with our blog section dedicated to future technology.",
-		img: future,
-		data: [
-			{
-				title:"Quantity",
-				text:"Over 1,000 articles on emerging tech trends and breakthroughs."
-			},
-			{
-				title:"Variety",
-				text:"Articles cover fields like AI, robotics, biotechnology, and more."
-			},
-			{
-				title:"Frequency",
-				text:"Fresh content added daily to keep you up to date."
-			},
-			{
-				title:"Authoritative",
-				text:"Written by our team of tech experts and industry professionals."
-			},
-		]			
-	},
-	{
-		title: "Research Insights Blogs",
-		text:"Dive deep into future technology concepts with our research section.",
-		img: research,
-		data: [
-			{
-				title:"Depth",
-				text:"500+ research articles for in-depth understanding."
-			},
-			{
-				title:"Graphics",
-				text:"Visual aids and infographics to enhance comprehension."
-			},
-			{
-				title:"Trends",
-				text:"Explore emerging trends in future technology research."
-			},
-			{
-				title:"Contributors",
-				text:"Contributions from tech researchers and academics."
-			},
-		]			
-	}
-]
 const Home = () => {
     return (
-        <>
-            <HomeMainBlock/>
-        
+        <div className="main__home-page home-page">
+            <div className="home-page__stmg-info stmg-info">
+                <div className="stmg-info__logo logo">
+                    <img src={logo} alt="logo" />
+                </div>
+                <div className="stmg-info__team-info team-info">
+                    <p className="team-info__title">STMG Fam info</p>
+                    <p className="team-info__contant">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+                </div>
+            </div>
 
-           
-            <Reviews/>
-            
-        </>
+        </div>
+
+
+
     )
 }
 

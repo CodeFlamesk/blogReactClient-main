@@ -2,9 +2,7 @@ const News = () => {
     return (
        
   <div>
-
     новини
-
   </div>
 
             

@@ -20,7 +20,7 @@ const menu = [
     },
     {
         to: "/news",
-        page: "News"
+        page: "Game"
     },
     {
         to: "/podcast",

@@ -1,10 +1,8 @@
 import { Suspense } from "react";
-import Footer from "components/footer/Footer";
 import { Outlet } from "react-router-dom";
 import Header from "components/header/Header"
 import { useSelector } from "react-redux";
 const Layout = () => {
-
     const {layout} = useSelector(store => store.dashboard);
     return (
         <>  
@@ -21,7 +19,7 @@ const Layout = () => {
             </main>
             {
                 layout === "client" && <Suspense>
-                <Footer/>
+            
             </Suspense>
             }
             
