@@ -19,7 +19,7 @@ const Sign = () => {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
-    const {active} = useSelector(store => store.modals)
+    const { active } = useSelector(store => store.modals)
     const isAuth = useSelector(store => store.user.isAuth)
 
     const dispatch = useDispatch();
@@ -42,12 +42,12 @@ const Sign = () => {
                                 <p>Join our community today! Create an account to unlock exclusive features and personalized experiences.</p>
                             </div>
                         </div>
-                        <form  className="main-forms__form-login form-login">
+                        <form className="main-forms__form-login form-login">
                             <div className="form-login__body">
-                                <Input setValue={setName} value={name} id={v4()} type={"text"} holder={"Enter First Name"}  />
-                                <Input setValue={setLastname} value={lastname} id={v4()} type={"text"} holder={"Enter Last Name"}  />
-                                <Input setValue={setEmail} value={email} id={v4()} type={"email"} holder={"Enter your Email"}  />
-                                <Input setValue={setPassword} value={password} id={v4()} type={"text"} holder={"Enter your Password"}  />
+                                <Input setValue={setName} value={name} id={v4()} type={"text"} holder={"Enter First Name"} />
+                                <Input setValue={setLastname} value={lastname} id={v4()} type={"text"} holder={"Enter Nick Name"} />
+                                <Input setValue={setEmail} value={email} id={v4()} type={"email"} holder={"Enter your Email"} />
+                                <Input setValue={setPassword} value={password} id={v4()} type={"text"} holder={"Enter your Password"} />
                             </div>
                             <div className="form-login__buttons">
                                 <RightButton cb={() => {
@@ -56,24 +56,24 @@ const Sign = () => {
                                             setEmail("")
                                             setPassword("")
                                         })
-                                    
+
                                 }} text={"Sign Up"} type={"submit"} />
                             </div>
                         </form>
                         <div className="main-forms__items">
                             <div className="main-forms__buttons">
-                                <RightButtonLink text={"Login"} to={"/login"}/>
+                                <RightButtonLink text={"Login"} to={"/login"} />
                             </div>
-                            <Images/>
+                            <Images />
                         </div>
                     </div>
                 </div>
-            </section> 
+            </section>
             {
-                active && 
-                    <ModalsParent closeB={true} cb={() => dispatch(changeActiveModal(false))}>
-                        <ModalsThank></ModalsThank>
-                    </ModalsParent>
+                active &&
+                <ModalsParent closeB={true} cb={() => dispatch(changeActiveModal(false))}>
+                    <ModalsThank></ModalsThank>
+                </ModalsParent>
             }
         </>
     )

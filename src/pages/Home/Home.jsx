@@ -33,7 +33,11 @@ const Home = () => {
                     <p className="team-info__contant">
                         But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
                         born and I will give you a complete account of the system, and expound the actual teachings of the
-                        great explorer of the truth, the master-builder of human happiness...
+                        great explorer of the truth, the master-builder of human happiness...    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                        born and I will give you a complete account of the system, and expound the actual teachings of the
+                        great explorer of the truth, the master-builder of human happiness    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                        born and I will give you a complete account of the system, and expound the actual teachings of the
+                        great explorer of the truth, the master-builder of human happiness
                     </p>
                 </div>
             </div>
@@ -49,7 +53,7 @@ const Home = () => {
                                 </div>
                                 <div className='box-user__team team'>
                                     <p className="team__member-name">
-                                        {user.name} {user.surname}
+                                        {user.surname}  ({user.name})
                                     </p>
                                     <p className="team__member-email">{user.role}</p>
                                 </div>
