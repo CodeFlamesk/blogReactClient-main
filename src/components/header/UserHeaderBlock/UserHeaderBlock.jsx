@@ -23,26 +23,26 @@ const UserHeaderBlock = () => {
 
     return (
         <div ref={block} className="user-header__body">
-            <button  onClick={() => setShow(true)} className="button-user">
-                <img width={40} height={40} src={image} alt="user photo" />
+            <button onClick={() => setShow(true)} className="button-user">
+                <img width={40} height={40} style={{ borderRadius: '50%' }} src={image} alt="user photo" />
                 <img src={chevron} alt="chevron right" />
             </button>
             {
-                show && 
+                show &&
                 <div className="user-header__content">
                     <div className="user-info__header">
-                        <UserBlock/>
+                        <UserBlock />
                         <button className="data__item" onClick={() => setShow(false)}>
                             <img src={close} alt="Close" />
                         </button>
                     </div>
-                    
-                        <RightButtonLink to={"/settings"} text={"User settings"}/>
-                        <ButtonRight cb={() => dispatch(authAction.logout())} text={"Logout"}/>
-                        
-                </div>  
+
+                    <RightButtonLink to={"/settings"} text={"User settings"} />
+                    <ButtonRight cb={() => dispatch(authAction.logout())} text={"Logout"} />
+
+                </div>
             }
-            
+
         </div>
     )
 }

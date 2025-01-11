@@ -27,10 +27,10 @@ const Users = () => {
     return (
         <>
             {
-                data.map(({path}) => {
+                data.map(({ path }) => {
                     return (
                         <div key={path} className="users__item">
-                            <img width="60" height="60" src={path} alt="user"/>
+                            <img width="60" height="60" src={path} alt="user" />
                         </div>
                     )
                 })
