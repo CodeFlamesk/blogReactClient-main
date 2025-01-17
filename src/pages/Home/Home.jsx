@@ -1,5 +1,5 @@
 import './home.scss';
-import logo from './img/logo-stmg.png';
+import soldier from './img/soldier.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import smallLogo from '../../components/header/img/Image.png'
@@ -26,7 +26,7 @@ const Home = () => {
         <div className="main__home-page home-page">
             <div className="home-page__stmg-info stmg-info">
                 <div className="stmg-info__logo logo">
-                    <img src={logo} alt="logo" />
+                    <img src={soldier} alt="logo" />
                 </div>
                 <div className="stmg-info__team-info team-info">
                     <p className="team-info__title">STMG Fam info</p>
