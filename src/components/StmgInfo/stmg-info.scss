@@ -1,0 +1,77 @@
+.main__home-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #141414;
+
+    width: 100%;
+    max-width: 1870px;
+
+
+}
+
+.stmg-info {
+    display: flex;
+    justify-content: end;
+
+
+    &__info-block {
+        width: 100%;
+        max-width: 1460px;
+
+        width: 100%;
+        background: url('./img/prespectiv.webp') no-repeat center center;
+        background-size: cover;
+    }
+}
+
+.info-block__decor {
+    position: absolute;
+    display: flex;
+    right: 0px;
+    padding-top: 17px;
+    padding-right: 44px;
+    justify-content: end;
+
+}
+
+.container-contant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 770px;
+
+    &__title {
+        padding-top: 49px;
+        font-size: 74px;
+        font-family: 'Staatliches', sans-serif;
+        color: #FFFFFF;
+        line-height: 1;
+    }
+
+    &__text {
+
+        padding-top: 14px;
+        font-family: 'Staatliches', sans-serif;
+
+    }
+
+    &__video-container {
+        width: 100%;
+        height: 429px;
+        max-width: 763px;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            /* Розтягує відео по ширині та висоті контейнера */
+            border-radius: 10px;
+        }
+
+    }
+}

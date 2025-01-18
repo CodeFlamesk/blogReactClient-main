@@ -1,70 +1,4 @@
-.main__home-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1596px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.stmg-info {
-    display: flex;
-    padding: 30px;
-    width: 100%;
-
-    justify-content: space-between;
-
-    @media (max-width: 992px) {
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 30px;
-    }
-
-    &__team-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 60%;
-
-        @media (max-width: 992px) {
-            width: 100%;
-            text-align: center;
-
-        }
-    }
-}
-
-.team-info {
-    &__title {
-        text-align: center;
-        font-size: 32px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 160%;
-
-    }
-
-    &__contant {
-        padding-top: 25px;
-    }
-}
-
-
-
-.logo {
-    max-width: 450px;
-    max-height: 500px;
-    display: flex;
-    justify-content: center;
-
-
-    img {
-
-        width: 90%;
-    }
-}
+@import url(https://fonts.googleapis.com/css?family=Staatliches:regular);
 
 .title {
     text-align: center;
@@ -78,9 +12,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding-top: 25px;
-    justify-content: space-between;
     column-gap: 50px;
     row-gap: 30px;
+
 }
 
 .team__box {
@@ -91,7 +25,6 @@
     box-shadow: 0 2px 4px rgba(15, 15, 207, 0.1);
     gap: 10px;
     align-items: center;
-
 }
 
 .box-user__img {
@@ -111,11 +44,9 @@
     object-fit: cover;
 }
 
-
 .team__member-name {
     font-size: 18px;
     font-weight: 600;
-
 }
 
 .team__member-email {
