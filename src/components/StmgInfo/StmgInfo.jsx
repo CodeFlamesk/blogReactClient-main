@@ -1,5 +1,6 @@
 import "./stmg-info.scss"
 
+
 import decor from './img/decor.webp'
 import intro from './video/intro.mp4'
 const StmgInfo = () => {
@@ -10,7 +11,7 @@ const StmgInfo = () => {
                 <p className='info-block__decor'><img src={decor} alt="decor" /></p>
                 <div className='info-block__container container-contant'>
 
-                    <p className='container-contant__title'>Play your favorites  </p>
+                    <p className='container-contant__title'>Small Tactical Mobile Group  </p>
 
 
                     <div className="container-contant__video-container">
@@ -31,7 +32,9 @@ const StmgInfo = () => {
                     </div>
 
 
-                    <p className='container-contant__text'>STMG - Small Tactical Mobile Group. Наше невелике ком'юніті було засновано двома командирами Дуся(Юра) та Катарп(Владислав), після чого навесні 2023 року було прийнято рішення переформуватися в повноцінний клан. На данний момент ми орієнтуємося виключно по грі "Squad".</p>
+                    <p className='container-contant__text-stmg'>STMG - Small Tactical Mobile Group.</p>
+                    <p className='container-contant__text'>Наше невелике ком'юніті було засновано двома командирами Дуся(Юра) та Катарп(Владислав), після чого навесні 2023 року було прийнято рішення переформуватися в повноцінний клан. </p>
+                    <p className='container-contant__text-moment'>На данний момент ми орієнтуємося виключно по грі "Squad".</p>
 
                 </div>
             </div>

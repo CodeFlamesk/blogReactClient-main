@@ -1,24 +1,16 @@
-.main__home-page {
-    display: flex;
-    flex-direction: column;
-    background-color: #141414;
-
-    width: 100%;
-    max-width: 1870px;
-
-
+@font-face {
+    font-family: 'Helvetica Bold';
+    src: url('/fonts/helvetica_bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
 }
 
 .stmg-info {
-    display: flex;
-    justify-content: end;
-
-
     &__info-block {
+        padding-bottom: 20px;
         width: 100%;
-        max-width: 1460px;
 
-        width: 100%;
+        /* height: 100vh; */
         background: url('./img/prespectiv.webp') no-repeat center center;
         background-size: cover;
     }
@@ -32,6 +24,9 @@
     padding-right: 44px;
     justify-content: end;
 
+    @media (max-width: 1280px) {
+        display: none;
+    }
 }
 
 .container-contant {
@@ -43,17 +38,47 @@
 
     &__title {
         padding-top: 49px;
-        font-size: 74px;
+        font-size: clamp(1.5rem, 0.607rem + 4.464vw, 4.625rem);
         font-family: 'Staatliches', sans-serif;
         color: #FFFFFF;
         line-height: 1;
+        width: 100%;
+
+
+        @media (max-width: 1280px) {
+            font-size: 40px;
+            text-align: center;
+            padding-bottom: 24px
+        }
+
+        @media (min-width: 1280px) {
+            max-width: 530px;
+        }
+    }
+
+    &__text-stmg {
+        padding-top: 24px;
+        font-family: 'Helvetica Bold', sans-serif;
+        font-size: 24px;
+        text-align: center;
+        color: #CFC9C9;
     }
 
     &__text {
+        font-family: 'Helvetica Bold', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        color: #CFC9C9;
+        z-index: 5;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
-        padding-top: 14px;
-        font-family: 'Staatliches', sans-serif;
+    }
 
+    &__text-moment {
+        font-family: 'Helvetica Bold', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        color: #CFC9C9;
     }
 
     &__video-container {
@@ -69,7 +94,6 @@
             width: 100%;
             height: 100%;
             object-fit: fill;
-            /* Розтягує відео по ширині та висоті контейнера */
             border-radius: 10px;
         }
 
