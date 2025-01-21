@@ -9,7 +9,14 @@
 
 }
 
-.home-page__left {
+.box-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: end;
+}
+
+.home-page__right {
     display: flex;
     flex-direction: column;
     /* width: 100%;

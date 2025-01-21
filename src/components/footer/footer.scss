@@ -1,0 +1,101 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__section {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(to bottom, #141414 33%, #FDD500 67%);
+        width: 100vw;
+        padding-bottom: 250px;
+    }
+
+    &__small-footer {
+        height: 110px;
+        background-color: #332D2B;
+        z-index: 10;
+    }
+}
+
+.box-footer {
+    &__arrow-img {
+        position: absolute;
+        right: 0;
+        top: 150px;
+        z-index: 1;
+    }
+
+    &__tank-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+}
+
+
+
+.contant-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 450px;
+    align-items: center;
+    width: 100%;
+    max-width: 867px;
+    z-index: 2;
+
+
+    &__title {
+        margin-top: 115px;
+        display: flex;
+        font-family: 'Staatliches', sans-serif;
+        font-size: 144px;
+        color: #E7C083;
+        line-height: 0.8;
+        text-align: center;
+        transform: rotate(-1deg);
+    }
+
+    &__stars {
+        display: flex;
+        gap: 21px;
+        margin-top: 10px;
+    }
+
+    &__join {
+        font-family: 'Staatliches', sans-serif;
+        font-size: 40px;
+        color: #000000;
+        margin-top: 117px;
+    }
+
+    &__button-subscribe {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 18px;
+        margin-top: 15px;
+        border: #000000 solid 5px;
+        padding: 10px;
+        padding-left: 46px;
+        padding-right: 46px;
+        font-family: 'Staatliches', sans-serif;
+        font-size: 24px;
+        color: #000000;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    &__button-subscribe:hover {
+
+        background: rgba(202, 172, 21, 0.5);
+
+
+        border-radius: 0px;
+    }
+
+}

@@ -7,6 +7,7 @@ import smallLogo from '../../components/header/img/Image.png'
 import intro from './video/intro.mp4' */
 import StmgInfo from 'components/StmgInfo/StmgInfo';
 import DecorLeftSide from 'components/DecorLeftSide/DecorLeftSide';
+import Footer from 'components/footer/Footer';
 const Home = () => {
     const [users, setUsers] = useState([]);
     const delay = 5000;
@@ -29,11 +30,12 @@ const Home = () => {
     return (
         <div className="main__home-page home-page">
             <DecorLeftSide />
-            <div className='home-page__left'>
-                <StmgInfo />
-                <div className="home-page__team team">
-                    <p className="team__title title">Our Team</p>
-                    {/*  <div className="team__list">
+            <div className='box-right'>
+                <div className='home-page__right'>
+                    <StmgInfo />
+                    <div className="home-page__team team">
+                        {/*     <p className="team__title title">Our Team</p> */}
+                        {/*  <div className="team__list">
                         {users.length > 0 ? (
                             users.map((user) => (
                                 <div key={user._id} className="team__box box-user ">
@@ -53,8 +55,11 @@ const Home = () => {
                             <p>No users found</p>
                         )}
                     </div> */}
+                    </div>
                 </div>
+                <Footer />
             </div>
+
 
 
 

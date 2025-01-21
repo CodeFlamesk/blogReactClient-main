@@ -1,6 +1,4 @@
 import "./stmg-info.scss"
-
-
 import decor from './img/decor.webp'
 import intro from './video/intro.mp4'
 const StmgInfo = () => {
