@@ -1,7 +1,7 @@
 import "./footer.scss";
 import star from './img/stars.webp';
-import tank from './img/tank.png';
-import arrow from './img/arrow-footer.png';
+import tank from './img/tank.webp';
+import arrow from './img/arrow-footer.webp';
 import arrows from './img/arrow-small-footer.webp';
 const Footer = () => {
     return (
