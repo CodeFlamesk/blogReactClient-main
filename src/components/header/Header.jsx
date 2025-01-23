@@ -27,8 +27,8 @@ const menu = [
         page: "Podcasts"
     },
     {
-        to: "/resourse",
-        page: "Resources"
+        to: "https://bir3791.github.io/race-mobile/",
+        page: "Mini Game"
     },
     {
         to: "/contact",
