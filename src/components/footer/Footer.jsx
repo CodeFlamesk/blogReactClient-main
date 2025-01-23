@@ -8,19 +8,23 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer__section box-footer">
                 <div className="box-footer__contant contant-info">
-                    <p className="contant-info__title">Small tactical Mobile Groop</p>
 
-                    <div className="contant-info__stars">
-                        <img src={star} alt="stars" />
-                        <img src={star} alt="stars" />
-                        <img src={star} alt="stars" />
-                        <img src={star} alt="stars" />
-                        <img src={star} alt="stars" />
+
+                    <p className="contant-info__title">Small tactical Mobile Groop</p>
+                    <img src={arrow} alt="arrow-right" className="box-footer__arrow-img" />
+
+
+                    <div className="contant-info__stars stars">
+                        <img src={star} alt="stars" className="stars-img" />
+                        <img src={star} alt="stars" className="stars-img" />
+                        <img src={star} alt="stars" className="stars-img" />
+                        <img src={star} alt="stars" className="stars-img" />
+                        <img src={star} alt="stars" className="stars-img" />
                     </div>
                     <p className="contant-info__join">Join Us</p>
                     <div className="contant-info__button-subscribe">subscribe now</div>
                 </div>
-                <img src={arrow} alt="arrow-right" className="box-footer__arrow-img" />
+
                 <img src={tank} alt="tank" className="box-footer__tank-img" />
 
             </div>

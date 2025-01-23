@@ -28,9 +28,6 @@ const StmgInfo = () => {
                             Your browser does not support the video tag.
                         </video>
                     </div>
-
-
-                    <p className='container-contant__text-stmg'>STMG - Small Tactical Mobile Group.</p>
                     <p className='container-contant__text'>Наше невелике ком'юніті було засновано двома командирами Дуся(Юра) та Катарп(Владислав), після чого навесні 2023 року було прийнято рішення переформуватися в повноцінний клан. </p>
                     <p className='container-contant__text-moment'>На данний момент ми орієнтуємося виключно по грі "Squad".</p>
 

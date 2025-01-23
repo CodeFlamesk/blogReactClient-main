@@ -10,7 +10,12 @@
         align-items: center;
         background: linear-gradient(to bottom, #141414 33%, #FDD500 67%);
         width: 100vw;
+
         padding-bottom: 250px;
+
+        @media (max-width: 767.98px) {
+            padding-bottom: 20%;
+        }
     }
 
     &__small-footer {
@@ -24,8 +29,13 @@
     &__arrow-img {
         position: absolute;
         right: 0;
-        top: 150px;
+        top: 19%;
         z-index: 1;
+        width: 14%;
+
+        @media (max-width: 1280px) {
+            display: none;
+        }
     }
 
     &__tank-img {
@@ -33,26 +43,46 @@
         right: 0;
         bottom: 0;
         z-index: 1;
+        width: 39%;
+        height: 50%;
+
+        @media (max-width: 1280px) {
+            width: 50%;
+        }
+
+        @media (max-width: 479.98px) {
+            width: 60%;
+        }
     }
 }
 
+.stars-img {
+    width: 10%;
+
+}
 
 
 .contant-info {
     display: flex;
     flex-direction: column;
-    margin-left: 450px;
+
+    margin-left: 24%;
+
     align-items: center;
     width: 100%;
-    max-width: 867px;
+
+    max-width: 62%;
     z-index: 2;
 
+    @media (max-width: 1280px) {
+        margin-left: 0px;
+    }
 
     &__title {
-        margin-top: 115px;
+        margin-top: 13%;
         display: flex;
         font-family: 'Staatliches', sans-serif;
-        font-size: 144px;
+        font-size: clamp(2.125rem, 0.658rem + 7.333vw, 9rem);
         color: #E7C083;
         line-height: 0.8;
         text-align: center;
@@ -62,6 +92,7 @@
     &__stars {
         display: flex;
         gap: 21px;
+        justify-content: center;
         margin-top: 10px;
     }
 
@@ -70,12 +101,16 @@
         font-size: 40px;
         color: #000000;
         margin-top: 117px;
+        -webkit-text-stroke: 2px #FDD500;
+
     }
+
 
     &__button-subscribe {
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         border-radius: 18px;
         margin-top: 15px;
         border: #000000 solid 5px;
@@ -88,6 +123,7 @@
         transition: all 0.3s ease-in-out;
         cursor: pointer;
         line-height: 1;
+        background: rgba(248, 248, 248, 0.3);
     }
 
     &__button-subscribe:hover {
