@@ -54,7 +54,7 @@ const Header = () => {
 
     return (
         <header className={`header ${active ? " _active" : null}`}>
-            {!newsletter && <HeaderTop />}
+
             <div className="header__body">
                 <div className="header__container">
                     <div className="header__content">
