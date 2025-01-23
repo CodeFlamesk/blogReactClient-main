@@ -4,7 +4,7 @@ import tank from './img/tank.webp';
 import arrow from './img/arrow-footer.webp';
 import arrows from './img/arrow-small-footer.webp';
 import line from './img/decor-line.webp';
-import tree from './img/tree.png';
+import tree from './img/tree.webp';
 const Footer = () => {
     return (
         <footer className="footer">
@@ -41,7 +41,7 @@ const Footer = () => {
                     <div className="info__info-authors info-authors">
                         <img src={tree} alt="tree" />
                         <div className="info-authors__text">
-                            <p>developed by CodeFlamesk</p>
+                            <p>developed by Code_Flamesk</p>
                             <p>designed by mantraneon</p>
                         </div>
                         <img src={tree} alt="tree" />
