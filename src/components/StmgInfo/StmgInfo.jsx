@@ -3,6 +3,7 @@ import decor from './img/decor.webp'
 import intro from './video/intro.mp4'
 const StmgInfo = () => {
     const delay = 5000;
+
     return (
         <div className="home-page__stmg-info stmg-info">
             <div className='stmg-info__info-block info-block '>
@@ -14,7 +15,6 @@ const StmgInfo = () => {
 
                     <div className="container-contant__video-container">
                         <video
-
                             autoPlay
                             muted
                             loop={false}

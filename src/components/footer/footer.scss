@@ -78,13 +78,14 @@
 
     @media (max-width: 1280px) {
         margin-left: 0px;
+        max-width: 66%;
     }
 
     &__title {
         margin-top: 13%;
         display: flex;
         font-family: 'Staatliches', sans-serif;
-        font-size: clamp(2.125rem, 0.658rem + 7.333vw, 9rem);
+        font-size: clamp(2.813rem, 1.535rem + 6.387vw, 9rem);
         color: #E7C083;
         line-height: 0.8;
         text-align: center;
