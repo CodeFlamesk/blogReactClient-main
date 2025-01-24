@@ -36,7 +36,7 @@ const OurTeam = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No users found</p>
+                    <p>юзери пішли на перекур(No users found)</p>
                 )}
             </div>
         </section>
