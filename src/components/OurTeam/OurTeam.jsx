@@ -21,8 +21,8 @@ const OurTeam = () => {
     }, []);
     return (
         <section className="team-section">
-            <p className="team-section__team team">Our Team</p>
-            <div className="team__list">
+            <p className="team-section__title">Our Team</p>
+            <div className="team-section__list">
                 {users.length > 0 ? (
                     users.map((user) => (
                         <div key={user._id} className="team__box box-user ">
@@ -38,7 +38,7 @@ const OurTeam = () => {
                 ) : (
                     <p>No users found</p>
                 )}
-            </div> *
+            </div>
         </section>
     )
 }

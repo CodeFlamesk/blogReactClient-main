@@ -2,4 +2,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 109px;
+    padding-left: 83px;
+    padding-right: 83px;
+    margin-left: auto;
+    width: 78%;
+
+    &__title {
+        font-family: 'Helvetica-Bold', sans-serif;
+        font-size: 64px;
+        color: #E7C083;
+        margin-bottom: 30px;
+
+    }
+
+    &__list {
+        display: flex;
+        border-top: 3px solid #E7C083;
+        width: 100%;
+        max-width: 1000px;
+        flex-wrap: wrap;
+        padding-top: 30px;
+    }
+
+    @media (max-width: 1280px) {
+        width: 100%;
+    }
+
+    @media (max-height: 600px) {
+        width: 100%;
+    }
 }

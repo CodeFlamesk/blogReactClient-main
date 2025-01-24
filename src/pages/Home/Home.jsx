@@ -21,6 +21,7 @@ const Home = () => {
                 <div className='home-page__right'>
                     <StmgInfo />
                     <OurTeam />
+
                 </div>
                 <Footer />
             </div>
