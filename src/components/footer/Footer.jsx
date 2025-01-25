@@ -23,8 +23,17 @@ const Footer = () => {
                         <img src={star} alt="stars" className="stars-img" />
                         <img src={star} alt="stars" className="stars-img" />
                     </div>
-                    <p className="contant-info__join">Join Us</p>
-                    <div className="contant-info__button-subscribe">subscribe now</div>
+                    <p className="contant-info__join">Play with Us</p>
+                    <a
+                        href="discord://discord.gg/JYvMMKwm"
+
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contant-info__button-subscribe"
+                    >
+                        Join Now
+                    </a>
+
                 </div>
 
                 <img src={tank} alt="tank" className="box-footer__tank-img" />
