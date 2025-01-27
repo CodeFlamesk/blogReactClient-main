@@ -26,7 +26,6 @@ const Footer = () => {
                     <p className="contant-info__join">Play with Us</p>
                     <a
                         href="discord://discord.gg/JYvMMKwm"
-
                         target="_blank"
                         rel="noopener noreferrer"
                         className="contant-info__button-subscribe"

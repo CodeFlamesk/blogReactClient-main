@@ -1,11 +1,10 @@
-
 import { NavLink } from 'react-router-dom'
 import "./header.scss"
 
 import logoMobile from "./img/logo-mobile.webp"
 import logoDesktop from "./img/logo-large.webp"
 import logoTablet from "./img/logo-small.webp"
-import HeaderTop from './HeaderTop/HeaderTop'
+
 import { useEffect, useState } from 'react'
 
 import AuthHeader from './AuthHeader/AuthHeader'
@@ -20,7 +19,8 @@ const menu = [
     },
     {
         to: "/news",
-        page: "Game"
+        page: "Game",
+        restricted: true
     },
     {
         to: "/podcast",
@@ -39,14 +39,14 @@ const menu = [
 const Header = () => {
 
     const { newsletter } = useSelector(store => store.newsletter)
-
+    const { role } = useSelector(store => store.user.user);
 
     const dispatch = useDispatch()
     useEffect(() => {
         if (localStorage.getItem("newsletterBlog")) {
-            dispatch(changeSubscribe(localStorage.getItem("newsletterBlog")))
+            dispatch(changeSubscribe(localStorage.getItem("newsletterBlog")));
         }
-    }, [])
+    }, [dispatch]);
 
 
     const [active, setActive] = useState(false);
@@ -54,7 +54,6 @@ const Header = () => {
 
     return (
         <header className={`header ${active ? " _active" : null}`}>
-
             <div className="header__body">
                 <div className="header__container">
                     <div className="header__content">
@@ -68,16 +67,18 @@ const Header = () => {
                         <nav className="header__menu menu">
                             <ul className="menu__list">
 
-                                {
-                                    menu.map(({ to, page }) => {
-                                        return (
-                                            <li key={to} className="menu__item">
-                                                <NavLink to={to} className="menu__link ">{page}</NavLink>
-                                            </li>
-                                        )
-                                    })
-                                }
-
+                                {menu.map(({ to, page, restricted }) => {
+                                    if (restricted && role === "USER") {
+                                        return null;
+                                    }
+                                    return (
+                                        <li key={to} className="menu__item">
+                                            <NavLink to={to} className="menu__link">
+                                                {page}
+                                            </NavLink>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </nav>
                         <AuthHeader />
@@ -101,4 +102,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

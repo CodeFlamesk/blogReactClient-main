@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const OurTeam = () => {
     const [users, setUsers] = useState([]);
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -19,27 +20,39 @@ const OurTeam = () => {
 
         fetchUsers();
     }, []);
+    const roles = ["LEADER", "ADMIN", "OFFICER", "SERGEANT", "STATIK", "RECRUIT"];
+    const renderRoleBlock = (role) => {
+        const roleUsers = users.filter((user) => user.role === role);
+        if (roleUsers.length === 0) return null;
+        return (
+            <div className="team__block" key={role}>
+                <h2>{role}</h2>
+                <div className="team-block__container">
+                    {roleUsers.map((user) => (
+                        <div key={user._id} className="team__box box-user">
+                            <div className="box-user__user user">
+                                <p>{user.surname}</p>
+                                <p>({user.name})</p>
+                                <p className="role">{user.role}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    };
     return (
         <section className="team-section">
             <p className="team-section__title">Our Team</p>
-            <div className="team-section__list">
+            <div className="team-section__list team">
                 {users.length > 0 ? (
-                    users.map((user) => (
-                        <div key={user._id} className="team__box box-user ">
-                            <div className='box-user__team team'>
-                                <p className="team__member-name">
-                                    {user.surname}  ({user.name})
-                                </p>
-                                <p className="team__member-email">{user.role}</p>
-                            </div>
-
-                        </div>
-                    ))
+                    roles.map(renderRoleBlock)
                 ) : (
-                    <p>юзери пішли на перекур(No users found)</p>
+                    <p>юзери пішли на перекур (No users found)</p>
                 )}
             </div>
         </section>
-    )
-}
+    );
+};
+
 export default OurTeam;
