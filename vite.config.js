@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias:{
+    alias: {
       components: "/src/components",
       assets: "/src/assets",
       pages: "/src/pages",
@@ -13,5 +13,9 @@ export default defineConfig({
       action: "/src/action",
       store: "/src/store"
     }
-  }
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+  },
 })

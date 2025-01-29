@@ -33,7 +33,7 @@ const OurTeam = () => {
                             <div className="box-user__user user">
                                 <p>{user.surname}</p>
                                 <p>({user.name})</p>
-                                <p className="role">{user.role}</p>
+                                {/* <p className="role">{user.role}</p> */}
                             </div>
                         </div>
                     ))}
