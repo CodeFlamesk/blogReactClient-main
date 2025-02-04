@@ -1,4 +1,4 @@
-import {Routes, Route, Navigate} from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import Layout from "../Layout/Layout"
 import { lazy, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
@@ -8,10 +8,13 @@ import LoadingApp from "components/Loading/LoadingApp";
 import PageNotFound from "pages/PageNotFound/PageNotFound";
 import { changeLoadingAuth } from "store/userReducer";
 
+
+
 const Home = lazy(() => import("../Home/Home"));
 const Blog = lazy(() => import("../Blog/Blog"));
 const Podcast = lazy(() => import("../Podcast/Podcast"));
-const News = lazy(() => import("../News/News"));
+const LayoutGame = lazy(() => import("pages/Game/LayoutAdmin"));
+const AddGame = lazy(() => import("pages/Game/AddGame"));
 
 const Contact = lazy(() => import("../Contact/Contact"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
@@ -24,7 +27,7 @@ function App() {
 
     const activePostId = useSelector(store => store.dashboard.activePostId);
     const categoryId = useSelector(store => store.dashboard.categoryId);
-    const {isLoading, isAuth} = useSelector(store => store.user)
+    const { isLoading, isAuth } = useSelector(store => store.user)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,34 +43,36 @@ function App() {
     }, [])
 
     useEffect(() => {
-        if(localStorage.getItem("token")) {
+        if (localStorage.getItem("token")) {
             dispatch(authAction.checkAuth())
         } else {
             dispatch(changeLoadingAuth(false))
         }
-    },[]);
+    }, []);
 
-    if(isLoading) {
-        return <LoadingApp/>
+    if (isLoading) {
+        return <LoadingApp />
     }
 
-    return ( 
+    return (
         <Routes>
-            <Route path="/" element={ <Layout />}>
-                <Route index element={<Home/>}/>
-                <Route path="news" element={<News/>}/>
-                <Route path="blog" element={<Blog/> }/>
-                <Route path="podcast" element={<Podcast/>}/>
-                <Route path="contact" element={<Contact/>}/>
-                <Route path="dashboard" element={ <Dashboard/>}/>
-                <Route path="login" element={ <Login/>}/>
-                <Route path="signup" element={ <Sign/>}/>
-                
-                <Route 
-                    path="/settings" 
-                    element={isAuth ? <Settings/> : <Navigate to="/login" />} 
-                    />
-                <Route path="*" element={<PageNotFound/>}/>
+            <Route path="game" element={<LayoutGame />} >
+                <Route path="addgame" element={<AddGame />} />
+            </Route>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="podcast" element={<Podcast />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Sign />} />
+
+                <Route
+                    path="/settings"
+                    element={isAuth ? <Settings /> : <Navigate to="/login" />}
+                />
+                <Route path="*" element={<PageNotFound />} />
             </Route>
         </Routes>
     )

@@ -18,13 +18,12 @@ const menu = [
         page: "Home"
     },
     {
-        to: "/news",
-        page: "Game",
-        restricted: true
+        to: "/game",
+        page: "Game"
     },
     {
-        to: "/podcast",
-        page: "Podcasts"
+        to: "/admin",
+        page: "Create Game"
     },
     {
         to: "https://bir3791.github.io/race-mobile/",
@@ -67,8 +66,8 @@ const Header = () => {
                         <nav className="header__menu menu">
                             <ul className="menu__list">
 
-                                {menu.map(({ to, page, restricted }) => {
-                                    if (restricted && role === "USER") {
+                                {menu.map(({ to, page }) => {
+                                    if ((to === "/news" && role === "USER") || (to === "/podcast" && !["ADMIN", "LEADER"].includes(role))) {
                                         return null;
                                     }
                                     return (
@@ -79,6 +78,7 @@ const Header = () => {
                                         </li>
                                     );
                                 })}
+
                             </ul>
                         </nav>
                         <AuthHeader />
