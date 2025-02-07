@@ -2,12 +2,23 @@
 
 .main__home-page {
     display: flex;
-
+    position: relative;
     background-color: #141414;
     justify-content: end;
     width: 100%;
 
 }
+
+/* .all {
+    display: flex;
+    flex-direction: column;
+}
+
+.teststicky {
+    position: relative;
+    bottom: 290px;
+    z-index: 8;
+} */
 
 .box-right {
     display: flex;

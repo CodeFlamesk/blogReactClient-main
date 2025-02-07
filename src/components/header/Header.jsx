@@ -18,12 +18,13 @@ const menu = [
         page: "Home"
     },
     {
-        to: "/game",
-        page: "Game"
-    },
-    {
         to: "/admin",
         page: "Create Game"
+
+    },
+    {
+        to: "/game",
+        page: "Game"
     },
     {
         to: "https://bir3791.github.io/race-mobile/",
@@ -67,7 +68,7 @@ const Header = () => {
                             <ul className="menu__list">
 
                                 {menu.map(({ to, page }) => {
-                                    if ((to === "/news" && role === "USER") || (to === "/podcast" && !["ADMIN", "LEADER"].includes(role))) {
+                                    if ((to === "/game" && role === "USER") || (to === "/admin" && !["ADMIN", "LEADER"].includes(role))) {
                                         return null;
                                     }
                                     return (

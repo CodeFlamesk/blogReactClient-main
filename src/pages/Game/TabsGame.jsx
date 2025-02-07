@@ -4,7 +4,19 @@ const TabsGame = () => {
         <div>
             <NavLink
                 to={`addgame`}
-            /* className={({ isActive }) => isActive ? "active" : "button-tabs"} */
+                className={({ isActive }) => isActive ? "active" : "button-tabs"}
+            >
+                Edit
+            </NavLink>
+            <NavLink
+                to={`userinfo`}
+                className={({ isActive }) => isActive ? "active" : "button-tabs"}
+            >
+                Dashboard
+            </NavLink>
+            <NavLink
+                to={`addgame`}
+                className={({ isActive }) => isActive ? "active" : "button-tabs"}
             >
                 Edit
             </NavLink>

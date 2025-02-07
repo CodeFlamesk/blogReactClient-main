@@ -9,8 +9,11 @@ import Footer from 'components/footer/Footer';
 import OurTeam from 'components/OurTeam/OurTeam';
 const Home = () => {
     return (
+        /*  <div className='all'> */
         <div className="main__home-page home-page">
+            {/* <div className='teststicky'> */}
             <DecorLeftSide />
+            {/*  </div> */}
             <div className='box-right'>
                 <div className='home-page__right'>
                     <StmgInfo />
@@ -31,6 +34,9 @@ const Home = () => {
 
 
         </div>
+        /*   ssssssssssssssssss
+      </div> */
+
     );
 };
 
