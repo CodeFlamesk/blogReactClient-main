@@ -13,7 +13,7 @@
     }
 
     &__line {
-        position: fixed;
+        position: absolute;
         top: 0;
         height: 100vh;
         width: 3px;
@@ -24,7 +24,7 @@
     }
 
     &__game-img {
-        position: fixed;
+        position: absolute;
         /*  width: 112px; */
         width: 6%;
         height: 28%;
@@ -34,7 +34,7 @@
     }
 
     &__over-img {
-        position: fixed;
+        position: relative;
         /* width: 118px; */
         width: 6.3%;
         height: 36%;
@@ -48,19 +48,23 @@
     }
 
     &__soldier {
-        position: fixed;
+        position: relative;
         width: 38%;
         height: 75%;
         max-height: 690px;
         left: 0px;
         bottom: 0px;
-        z-index: 3;
+        z-index: 8;
 
 
+        img {
+            position: absolute;
+            top: 20%;
+        }
     }
 
     &__arrow-down {
-        position: fixed;
+        position: absolute;
         left: 41px;
         bottom: 2%;
         height: 15%;

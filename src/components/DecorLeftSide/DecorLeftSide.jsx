@@ -33,13 +33,10 @@ const DecorLeftSide = () => {
     return (
         <div className="decor-page">
             <div className="decor-page__line"></div>
-            <div className="decor-page__over-img" ><img src={over} alt="over-img" /></div>
-            <div className="decor-page__game-img" data-bottom="25%"> <img src={game} alt="game-img" /></div>
-            <img src={soldier} alt="soldier" className="decor-page__soldier" data-bottom="0px" />
-            <div className="decor-page__arrow-down" data-bottom="2%">
-                <img src={arrow} alt="arrow" />
-            </div>
-
+            <img src={over} alt="over-img" className="decor-page__over-img" />
+            <img src={game} alt="game-img" className="decor-page__game-img" />
+            <img src={soldier} alt="soldier" className="decor-page__soldier" />
+            <img src={arrow} alt="arrow" className="decor-page__arrow-down" />
         </div>
     );
 };
