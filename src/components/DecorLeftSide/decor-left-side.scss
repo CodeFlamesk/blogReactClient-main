@@ -1,7 +1,8 @@
 .decor-page {
-    position: relative;
+
     display: flex;
     justify-content: start;
+    z-index: 9;
 
     @media (max-height: 600px) {
         display: none;
@@ -29,7 +30,7 @@
         height: 28%;
         /* height: 276px; */
         left: 35px;
-        bottom: 19%;
+        bottom: 25%;
     }
 
     &__over-img {
@@ -40,6 +41,10 @@
         /* height: 277px; */
         left: 80px;
         bottom: 50%;
+
+        img {
+            z-index: 8;
+        }
     }
 
     &__soldier {
