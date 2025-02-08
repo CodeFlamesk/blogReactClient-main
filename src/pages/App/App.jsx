@@ -14,7 +14,7 @@ const Home = lazy(() => import("../Home/Home"));
 const Blog = lazy(() => import("../Blog/Blog"));
 const Podcast = lazy(() => import("../Podcast/Podcast"));
 const LayoutGame = lazy(() => import("pages/Game/LayoutAdmin/LayoutAdmin"));
-const AddGame = lazy(() => import("pages/Game/AddGame"));
+const AddGame = lazy(() => import("pages/Game/AddGame/AddGame"));
 const Contact = lazy(() => import("../Contact/Contact"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
 const Login = lazy(() => import("../Auth/Login"));

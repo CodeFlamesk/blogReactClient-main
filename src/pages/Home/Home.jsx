@@ -11,9 +11,9 @@ const Home = () => {
     return (
         /*  <div className='all'> */
         <div className="main__home-page home-page">
-            <div className='teststicky'>
-                <DecorLeftSide />
-            </div>
+            {/*     <div className='teststicky'> */}
+            <DecorLeftSide />
+            {/* </div> */}
             <div className='box-right'>
                 <div className='home-page__right'>
                     <StmgInfo />

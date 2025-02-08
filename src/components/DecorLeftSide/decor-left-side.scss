@@ -1,5 +1,4 @@
 .decor-page {
-
     display: flex;
     justify-content: start;
     z-index: 9;
@@ -13,69 +12,115 @@
     }
 
     &__line {
-        position: absolute;
+        position: fixed;
         top: 0;
         height: 100vh;
         width: 3px;
         background-color: #E7C083;
         z-index: 2;
         left: 235px;
-
     }
 
     &__game-img {
-        position: absolute;
-        /*  width: 112px; */
+        position: fixed;
         width: 6%;
         height: 28%;
-        /* height: 276px; */
         left: 35px;
-        bottom: 25%;
+        bottom: 20%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     &__over-img {
-        position: relative;
-        /* width: 118px; */
+        position: fixed;
         width: 6.3%;
         height: 36%;
-        /* height: 277px; */
         left: 80px;
         bottom: 50%;
 
         img {
-            z-index: 8;
+            width: 100%;
+            height: 100%;
         }
     }
 
     &__soldier {
-        position: relative;
+        position: fixed;
         width: 38%;
         height: 75%;
         max-height: 690px;
         left: 0px;
         bottom: 0px;
-        z-index: 8;
-
-
-        img {
-            position: absolute;
-            top: 20%;
-        }
+        z-index: 9;
     }
 
     &__arrow-down {
-        position: absolute;
+        position: fixed;
         left: 41px;
         bottom: 2%;
         height: 15%;
-        transform: rotate(180deg);
         width: 5%;
+        animation: moveDown 2s ease-in-out infinite paused;
+
+        img {
+            width: 100%;
+            height: 100%;
+            transform: rotate(180deg);
+        }
+
+        &.active {
+            animation-play-state: running;
+            /* Запуск анімації */
+        }
     }
 
-    /*   &__arrow {
+    &__arrow {
         position: fixed;
         padding-top: 41px;
-        top: 41;
-        left: 41px;
-    } */
+        height: 20%;
+        left: 28.8%;
+        width: 5%;
+        animation: moveTop 2s ease-in-out infinite paused;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &.active {
+            animation-play-state: running;
+            /* Запуск анімації */
+        }
+    }
+}
+
+@keyframes moveTop {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
