@@ -1,7 +1,8 @@
 .decor-page {
-    position: relative;
+    position: sticky;
     display: flex;
     justify-content: start;
+    width: 100%;
 
     @media (max-height: 600px) {
         display: none;
@@ -12,7 +13,7 @@
     }
 
     &__line {
-        position: fixed;
+        position: absolute;
         top: 0;
         height: 100vh;
         width: 3px;
@@ -23,39 +24,52 @@
     }
 
     &__game-img {
-        position: fixed;
+        position: absolute;
         /*  width: 112px; */
         width: 6%;
         height: 28%;
         /* height: 276px; */
         left: 35px;
         bottom: 19%;
+        top: 300px;
+
+        img {
+            position: absolute;
+        }
     }
 
     &__over-img {
-        position: fixed;
+        position: relative;
         /* width: 118px; */
         width: 6.3%;
         height: 36%;
         /* height: 277px; */
         left: 80px;
         bottom: 50%;
+
+        img {
+            position: absolute;
+        }
     }
 
     &__soldier {
-        position: fixed;
+        position: relative;
         width: 38%;
         height: 75%;
         max-height: 690px;
         left: 0px;
         bottom: 0px;
-        z-index: 3;
+        z-index: 8;
 
 
+        img {
+            position: absolute;
+            top: 20%;
+        }
     }
 
     &__arrow-down {
-        position: fixed;
+        position: absolute;
         left: 41px;
         bottom: 2%;
         height: 15%;

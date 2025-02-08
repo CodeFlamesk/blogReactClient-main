@@ -9,16 +9,14 @@
 
 }
 
-/* .all {
-    display: flex;
-    flex-direction: column;
-}
+
 
 .teststicky {
-    position: relative;
-    bottom: 290px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 180px;
     z-index: 8;
-} */
+}
 
 .box-right {
     display: flex;

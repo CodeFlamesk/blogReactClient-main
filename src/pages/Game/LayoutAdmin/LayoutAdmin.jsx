@@ -5,6 +5,8 @@ import { Suspense } from "react";
 import TabsGame from "../TabsGame";
 import "./layout-admin.scss"
 import Container from "components/Container/Container";
+import Footer from "components/footer/Footer";
+import SmallFooter from "components/footer/SmallFooter";
 const LayoutGame = () => {
   return (
 
@@ -21,7 +23,7 @@ const LayoutGame = () => {
 
         </Container>
       </main>
-
+      <SmallFooter />
     </div>
 
 

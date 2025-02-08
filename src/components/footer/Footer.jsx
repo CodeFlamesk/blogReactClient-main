@@ -2,9 +2,8 @@ import "./footer.scss";
 import star from './img/stars.webp';
 import tank from './img/tank.webp';
 import arrow from './img/arrow-footer.webp';
-import arrows from './img/arrow-small-footer.webp';
-import line from './img/decor-line.webp';
-import tree from './img/tree.webp';
+
+import SmallFooter from "./SmallFooter";
 const Footer = () => {
     return (
         <footer className="footer">
@@ -38,25 +37,7 @@ const Footer = () => {
                 <img src={tank} alt="tank" className="box-footer__tank-img" />
 
             </div>
-            <div className="footer__small-footer small-footer">
-                <div className="small-footer__decor-line">
-                    <img src={line} alt="decor-line-ua" />
-                </div>
-
-                <div className="small-footer__info info">
-
-                    <img src={arrows} alt="arrow-right" className="info__arrow" />
-                    <div className="info__info-authors info-authors">
-                        <img src={tree} alt="tree" />
-                        <div className="info-authors__text">
-                            <p>developed by Code_Flamesk</p>
-                            <p>designed by mantraneon</p>
-                        </div>
-                        <img src={tree} alt="tree" />
-                    </div>
-                    <img src={arrows} alt="arrow-right" className="info__arrow-return" />
-                </div>
-            </div>
+            <SmallFooter />
         </footer>
     );
 };

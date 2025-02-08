@@ -9,10 +9,15 @@ const DecorLeftSide = () => {
         <div className="decor-page">
             {/*      <img src={arrow} alt="arrow" className="decor-page__arrow" /> */}
             <div className="decor-page__line"></div>
-            <img src={over} alt="over-img" className="decor-page__over-img" />
-            <img src={game} alt="game-img" className="decor-page__game-img" />
-            <img src={soldier} alt="soldier" className="decor-page__soldier" />
-            <img src={arrow} alt="arrow" className="decor-page__arrow-down" />
+            <div className="decor-page__over-img"><img src={over} alt="over-img" /></div>
+
+
+            <div className="decor-page__game-img">  <img src={game} alt="game-img" /></div>
+            <div className="decor-page__soldier">
+                <img src={soldier} alt="soldier" />
+            </div>
+            <div className="decor-page__arrow-down">  <img src={arrow} alt="arrow" /></div>
+
         </div>
     )
 }
