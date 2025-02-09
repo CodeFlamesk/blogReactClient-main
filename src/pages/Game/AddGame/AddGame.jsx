@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import "./add-game.scss";
 import basket from './img/basket.png';
+import ArrowDown from "components/ui/icons/ArrowDown";
+import CustomSelect from "components/ui/Acordion/Accordion";
 
 const AddGame = () => {
     const [images, setImages] = useState([]);
@@ -35,6 +37,22 @@ const AddGame = () => {
             fileInputRef.current.value = "";
         }
     };
+
+
+    const teamFilter = [
+        { value: 'red', label: 'Red team' },
+        { value: 'blue', label: 'Blue team' },
+        { value: 'orange', label: 'Orange team' },
+        { value: 'black', label: 'Black team' },
+        { value: 'gray', label: 'Gray team' },
+        { value: 'green', label: 'Green team' },
+        { value: 'brown', label: 'Brown team' },
+        { value: 'pink', label: 'Pink team' },
+        { value: 'purple', label: 'Purple team' },
+    ];
+
+
+
 
     return (
         <div className="layout-container admin">
@@ -79,6 +97,33 @@ const AddGame = () => {
                             </div>
                         </>
                     ))}
+                </div>
+
+
+
+
+
+
+
+                <div className="team-card">
+                    {/* team */}
+
+                    <CustomSelect
+                        options={teamFilter}
+                        onSelect={<ArrowDown />}
+                        styles="custom-select__language"
+                        text="Team"
+                        styleheader="custom-select-team__header"
+                    />
+
+                    {/* role */}
+                    <div className="team-card__add-role add-role">
+                        <p className="add-role__number">№</p>
+                        <p className="add-role__role">Role: </p>
+                        <p className="add-role__name">Name</p>
+                    </div>
+                    {/* team */}
+                    <div></div>
                 </div>
 
                 <button className="new-game__button">Save</button>
