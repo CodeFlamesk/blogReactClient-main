@@ -50,6 +50,19 @@ const AddGame = () => {
         { value: 'pink', label: 'Pink team' },
         { value: 'purple', label: 'Purple team' },
     ];
+    const roleFilter = [
+        { value: 'sl', label: 'SL' },
+        { value: 'rifle', label: 'Rifle' },
+        { value: 'med', label: 'Med' },
+        { value: 'gp', label: 'Gp' },
+        { value: 'lat', label: 'Lat' },
+        { value: 'hat', label: 'Hat' },
+        { value: 'crewman', label: 'Crewman' },
+        { value: 'mortar', label: 'Mortar' },
+        { value: 'mg', label: 'Mg' },
+        { value: 'sniper', label: 'Sniper' },
+        { value: 'sapper', label: 'Sapper' },
+    ];
 
 
 
@@ -120,7 +133,7 @@ const AddGame = () => {
                     <div className="team-card__add-role add-role">
                         <p className="add-role__number">№</p>
                         <p className="add-role__role">Role: </p>
-                        <p className="add-role__name">Name</p>
+                        <p className="add-role__name">Name:</p>
                     </div>
                     {/* team */}
                     <div></div>
