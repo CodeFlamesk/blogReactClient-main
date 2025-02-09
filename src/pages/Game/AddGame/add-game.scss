@@ -29,11 +29,11 @@
         border-radius: 8px;
         box-shadow: inset 0px 0px 0px 50px #FFFFFF;
         border: 2px solid transparent;
-        color: #9340d8;
+        color: #e25c4a;
 
         &:focus {
             outline: none;
-            border: 2px solid #9340d8; // Зміни колір бордера
+            border: 2px solid #e25c4a; // Зміни колір бордера
         }
     }
 
@@ -45,11 +45,11 @@
         resize: vertical;
         box-shadow: inset 0px 0px 0px 50px #FFFFFF;
         border: 2px solid transparent;
-        color: #9340d8;
+        color: #e25c4a;
 
         &:focus {
             outline: none;
-            border: 2px solid #9340d8;
+            border: 2px solid #e25c4a;
         }
     }
 
@@ -96,6 +96,7 @@
     }
 
     &__preview {
+        position: relative;
         max-width: 728px;
         width: 100%;
         max-height: 728px;
@@ -108,6 +109,59 @@
             width: 100%;
             height: 100%;
         }
+    }
 
+    &__name-img {
+        text-align: center;
+        color: #e25c4a;
+    }
+}
+
+.preview__delete {
+    position: absolute;
+    display: flex;
+    background: rgba(248, 248, 248, 0.562);
+    cursor: pointer;
+    border-radius: 24px;
+    top: 10px;
+    right: 10px;
+    z-index: 9;
+    justify-items: baseline;
+    padding: 5px 10px;
+    gap: 10px;
+    border: 1px solid red;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    color: red;
+}
+
+.upload__preview:hover .preview__delete {
+    opacity: 1;
+}
+
+.preview__delete img {
+    width: 35px;
+}
+
+.add-map {
+    display: inline-block;
+
+    &__input {
+        display: none;
+    }
+
+    &__label {
+        background-color: #e25c4a;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+
+        &:hover {
+            background-color: #9340d8;
+        }
     }
 }
