@@ -35,8 +35,8 @@ const CustomSelect = ({ options, styles, text, styleheader }) => {
                 className={`${styleheader}`}
                 onClick={handleToggle}
                 style={{
-                    color: selectedOption ? selectedOption.value : "#0F172A",
-                    borderColor: selectedOption ? selectedOption.value : "#E2E8F0",
+                    color: selectedOption ? selectedOption.value : "#B6A1D3",
+                    borderColor: selectedOption ? selectedOption.value : "#B6A1D3",
                 }}
             >
                 {selectedOption ? selectedOption.label : `${text}`}
