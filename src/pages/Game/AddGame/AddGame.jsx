@@ -14,6 +14,16 @@ const AddGame = () => {
     // Стан для блоків з ролями. Генеруємо унікальний id для першого блоку.
     const [roles, setRoles] = useState([{ id: Date.now(), role: null, user: null }]);
     const [team, setTeam] = useState([{ id: Date.now(), team: null, user: null }]);
+    const [gameData, setGameData] = useState({
+        type: "",
+        date: "",
+        name: "",
+        map: "",
+        about: "",
+    });
+    const handleInputChange = (e) => {
+        setGameData({ ...gameData, [e.target.name]: e.target.value });
+    };
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -34,7 +44,8 @@ const AddGame = () => {
     }, [previews]);
 
     const handleFileChange = (e) => {
-        const newFiles = Array.from(e.target.files);
+        const newFiles = Array.from(e.target.files).slice(0, 2);
+
         if (images.length + newFiles.length > 2) {
             alert("Ви можете вибрати тільки 2 файли.");
             return;
@@ -113,21 +124,63 @@ const AddGame = () => {
     const removeTeam = (idToRemove) => {
         setTeam(team.filter(team => team.id !== idToRemove));
     };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("type", gameData.type);
+        formData.append("date", gameData.date);
+        formData.append("name", gameData.name);
+        formData.append("map", gameData.map);
+        formData.append("about", gameData.about);
+
+        images.forEach((image) => formData.append("images", image));
+
+        roles.forEach((role, index) => {
+            formData.append(`roles[${index}][role]`, role.role?.value || "");
+            formData.append(`roles[${index}][user]`, role.user?.value || "");
+        });
+
+        team.forEach((teamItem, index) => {
+            formData.append(`team[${index}][team]`, teamItem.team?.value || "");
+            formData.append(`team[${index}][user]`, teamItem.user?.value || "");
+        });
+
+        try {
+            const response = await fetch("http://localhost:5000/api/games", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("Success:", data);
+        } catch (error) {
+            console.error("Error submitting form:", error.message);
+        }
+    };
+
+    const handleTeamSelect = (id, selectedTeam) => {
+        setTeam(team.map((t) => (t.id === id ? { ...t, team: selectedTeam } : t)));
+    };
 
     return (
         <div className="layout-container admin">
             <p className="admin__title">Edit game info</p>
-            <form className="admin__form new-game">
+            <form onSubmit={handleSubmit} className="admin__form new-game">
                 <p>Type</p>
-                <input type="text" placeholder="Type" className="new-game__input" />
+                <input type="text" name="type" placeholder="Type" className="new-game__input" onChange={handleInputChange} />
                 <p>Date</p>
-                <input type="text" placeholder="Date" className="new-game__input" />
+                <input type="text" name="date" placeholder="Date" className="new-game__input" onChange={handleInputChange} />
                 <p>Name</p>
-                <input type="text" placeholder="Name" className="new-game__input" />
+                <input type="text" name="name" placeholder="Name" className="new-game__input" onChange={handleInputChange} />
                 <p>Map</p>
-                <input type="text" placeholder="Map" className="new-game__input" />
+                <input type="text" name="map" placeholder="Map" className="new-game__input" onChange={handleInputChange} />
                 <p>About game</p>
-                <textarea placeholder="About game" className="new-game__about-game" />
+                <textarea name="about" placeholder="About game" className="new-game__about-game" onChange={handleInputChange} />
 
                 <p className="new-game__map-title">Add a tactic image (max 2)</p>
                 <div className="new-game__add-map add-map">
@@ -162,57 +215,60 @@ const AddGame = () => {
 
 
 
-                {team.map((item, index) => (
-                    <div className="team-card">
+                {team.map((item) => (
+                    <div key={item.id} className="team-card"> {/* Унікальний ключ для кожної команди */}
                         <CustomSelect
                             options={teamFilter}
-                            onSelect={() => { }}
+                            selectedOption={item.team}
+                            onSelect={(selectedTeam) => handleTeamSelect(item.id, selectedTeam)}
                             styles="custom-select__language"
                             text="Team"
                             styleheader="custom-select-team__header"
                         />
 
-                        {/* Заголовок для блоку ролей */}
+
+
                         <div className="team-card__add-role add-role">
                             <p className="add-role__number">№</p>
                             <p className="add-role__role">Role:</p>
                             <p className="add-role__name">Name:</p>
                         </div>
 
-                        {/* Динамічний рендер блоків ролей */}
-                        {roles.map((item, index) => (
-                            <div key={item.id} className="team-card__add-role add-role">
-                                <p className="add-role__number">{index + 1}</p>
+                        {roles.map((roleItem, roleIndex) => (
+                            <div key={roleItem.id} className="team-card__add-role add-role"> {/* Унікальний ключ для ролей */}
+                                <p className="add-role__number">{roleIndex + 1}</p>
                                 <div className="add-role__role">
                                     <CustomSelect
                                         options={roleFilter}
-                                        onSelect={(selectedRole) => handleRoleSelect(item.id, selectedRole)}
+                                        selectedOption={roleItem.role}
+                                        onSelect={(selectedRole) => handleRoleSelect(roleItem.id, selectedRole)}
                                         styles="custom-select__language"
                                         text="Role"
                                         styleheader="custom-select-team__role"
                                     />
+
                                 </div>
                                 <div className="add-role__name">
                                     <CustomSelect
                                         options={users.map(user => ({ value: user._id, label: user.name }))}
-                                        selectedOption={item.user?.value}
-                                        onSelect={(selectedUser) => handleUserSelectForRole(item.id, selectedUser)}
+                                        selectedOption={roleItem.user?.value}
+                                        onSelect={(selectedUser) => handleUserSelectForRole(roleItem.id, selectedUser)}
                                         styles="custom-select__language"
                                         text="Name"
                                         styleheader="custom-select-team__role"
                                     />
                                 </div>
-                                <button type="button" className="add-role__delete" onClick={() => removeRole(item.id)}>
+                                <button type="button" className="add-role__delete" onClick={() => removeRole(roleItem.id)}>
                                     <img src={basketRole} alt="basket" />
                                 </button>
                             </div>
                         ))}
 
-                        {/* Кнопка для додавання нового блоку ролей */}
                         <button type="button" onClick={addRole} className="team-card__button">Add Role</button>
                         <button type="button" onClick={() => removeTeam(item.id)} className="team-card__button-remove">! Delete Team !</button>
                     </div>
                 ))}
+
 
                 <button type="button" onClick={addTeam} className="team-card__button">Add Team</button>
                 <button type="submit" className="new-game__button">Save</button>

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import "./header.scss"
 
 import logoMobile from "./img/logo-mobile.webp"
-import logoDesktop from "./img/logo-large.webp"
+import logoDesktop from "./img/logo-stmg.webp"
 import logoTablet from "./img/logo-small.webp"
 
 import { useEffect, useState } from 'react'
