@@ -124,6 +124,14 @@ const AddGame = () => {
     const removeTeam = (idToRemove) => {
         setTeam(team.filter(team => team.id !== idToRemove));
     };
+    const handleTeamSelect = (id, selectedTeam) => {
+        setTeam(prevTeam =>
+            prevTeam.map(teamItem =>
+                teamItem.id === id ? { ...teamItem, team: selectedTeam } : teamItem
+            )
+        );
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -134,17 +142,24 @@ const AddGame = () => {
         formData.append("map", gameData.map);
         formData.append("about", gameData.about);
 
-        images.forEach((image) => formData.append("images", image));
+        // Перевіряємо, чи є у масиві хоча б один елемент перед JSON.stringify
+        const rolesData = roles.map(role => ({
+            role: role.role?.value || null, // Замість "" краще передавати null, якщо значення немає
+            user: role.user?.value || null
+        }));
 
-        roles.forEach((role, index) => {
-            formData.append(`roles[${index}][role]`, role.role?.value || "");
-            formData.append(`roles[${index}][user]`, role.user?.value || "");
-        });
+        const teamData = team.map(teamItem => ({
+            team: teamItem.team?.value || null,
+            user: teamItem.user?.value || null
+        }));
 
-        team.forEach((teamItem, index) => {
-            formData.append(`team[${index}][team]`, teamItem.team?.value || "");
-            formData.append(`team[${index}][user]`, teamItem.user?.value || "");
-        });
+        formData.append("roles", JSON.stringify(rolesData));
+        formData.append("team", JSON.stringify(teamData));
+
+        console.log("FormData перед відправкою:");
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ": ", pair[1]);
+        }
 
         try {
             const response = await fetch("http://localhost:5000/api/games", {
@@ -153,7 +168,8 @@ const AddGame = () => {
             });
 
             if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
+                const errorText = await response.text();
+                throw new Error(`Server error ${response.status}: ${errorText}`);
             }
 
             const data = await response.json();
@@ -163,9 +179,11 @@ const AddGame = () => {
         }
     };
 
-    const handleTeamSelect = (id, selectedTeam) => {
-        setTeam(team.map((t) => (t.id === id ? { ...t, team: selectedTeam } : t)));
-    };
+
+
+
+
+
 
     return (
         <div className="layout-container admin">
@@ -219,8 +237,8 @@ const AddGame = () => {
                     <div key={item.id} className="team-card"> {/* Унікальний ключ для кожної команди */}
                         <CustomSelect
                             options={teamFilter}
-                            selectedOption={item.team}
-                            onSelect={(selectedTeam) => handleTeamSelect(item.id, selectedTeam)}
+                            selectedOption={item.team?.value} // Переконайся, що передається value
+                            onSelect={(selectedTeam) => handleTeamSelect(item.id, { value: selectedTeam.value, label: selectedTeam.label })}
                             styles="custom-select__language"
                             text="Team"
                             styleheader="custom-select-team__header"
@@ -271,7 +289,7 @@ const AddGame = () => {
 
 
                 <button type="button" onClick={addTeam} className="team-card__button">Add Team</button>
-                <button type="submit" className="new-game__button">Save</button>
+                <button type="submit" onClick={handleSubmit} className="new-game__button">Save</button>
             </form>
         </div>
     );
