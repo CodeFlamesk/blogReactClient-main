@@ -142,23 +142,32 @@ const AddGame = () => {
         formData.append("map", gameData.map);
         formData.append("about", gameData.about);
 
-        // Перевіряємо, чи є у масиві хоча б один елемент перед JSON.stringify
-        const rolesData = roles.map(role => ({
-            role: role.role?.value || null, // Замість "" краще передавати null, якщо значення немає
-            user: role.user?.value || null
-        }));
+        // Додаємо файли, якщо вони є
+        if (images.length > 0) {
+            images.forEach(image => formData.append("gameImages", image));
+        } else {
+            console.warn("⚠ Немає зображень для відправки");
+        }
 
-        const teamData = team.map(teamItem => ({
-            team: teamItem.team?.value || null,
-            user: teamItem.user?.value || null
-        }));
+        // Додаємо ролі (перевіряємо, чи вони не пусті)
+        const rolesData = roles.length > 0 ? roles.map(role => ({
+            role: role.role?.value || "",
+            user: role.user?.value || ""
+        })) : [];
+
+        // Додаємо команду (перевіряємо, чи вона не пуста)
+        const teamData = team.length > 0 ? team.map(teamItem => ({
+            team: teamItem.team?.value || "",
+            user: teamItem.user?.value || ""
+        })) : [];
 
         formData.append("roles", JSON.stringify(rolesData));
         formData.append("team", JSON.stringify(teamData));
 
-        console.log("FormData перед відправкою:");
+        // Логуємо FormData для перевірки
+        console.log("📤 FormData перед відправкою:");
         for (let pair of formData.entries()) {
-            console.log(pair[0] + ": ", pair[1]);
+            console.log(`${pair[0]}:`, pair[1]);
         }
 
         try {
@@ -173,11 +182,12 @@ const AddGame = () => {
             }
 
             const data = await response.json();
-            console.log("Success:", data);
+            console.log("✅ Success:", data);
         } catch (error) {
-            console.error("Error submitting form:", error.message);
+            console.error("❌ Error submitting form:", error.message);
         }
     };
+
 
 
 
