@@ -1,18 +1,19 @@
-import './game-team.scss'
-import axios from "axios";
-import basketRole from '../img/basketRole.png'
-import CustomSelect from 'components/ui/Acordion/Accordion';
+import './game-team.scss';
+import axios from 'axios';
+import basketRole from '../img/basketRole.png';
+import CustomSelect from 'components/ui/Acordion/Accordion'; // Ваш CustomSelect компонент
 import { useEffect, useState } from 'react';
 
 const GameTeam = () => {
     const [users, setUsers] = useState([]);
-    const [teams, setTeams] = useState([{
-        id: Date.now(),
-        team: null,
-        roles: [{ id: Date.now(), role: null, user: null }],
-    }]);
+    const [teams, setTeams] = useState([
+        {
+            id: Date.now(),
+            team: null, // обраний об'єкт команди (наприклад, { value: 'red', label: 'Red team' })
+            roles: [{ id: Date.now(), role: null, user: null }],
+        },
+    ]);
 
-    // Фільтри для вибору
     const teamFilter = [
         { value: 'red', label: 'Red team' },
         { value: 'blue', label: 'Blue team' },
@@ -41,7 +42,77 @@ const GameTeam = () => {
         { value: 'cmd', label: 'Cmd' },
     ];
 
-    // Завантаження користувачів
+    const addTeam = () => {
+        setTeams((prev) => [
+            ...prev,
+            { id: Date.now(), team: null, roles: [{ id: Date.now(), role: null, user: null }] },
+        ]);
+    };
+
+    const removeTeam = (idToRemove) =>
+        setTeams((prev) => prev.filter((team) => team.id !== idToRemove));
+
+    const addRole = (teamId) => {
+        setTeams((prev) =>
+            prev.map((team) =>
+                team.id === teamId
+                    ? { ...team, roles: [...team.roles, { id: Date.now(), role: null, user: null }] }
+                    : team
+            )
+        );
+    };
+
+    const removeRole = (teamId, roleId) => {
+        setTeams((prev) =>
+            prev.map((team) =>
+                team.id === teamId
+                    ? { ...team, roles: team.roles.filter((role) => role.id !== roleId) }
+                    : team
+            )
+        );
+    };
+
+    // Оновлюємо вибрану команду (CustomSelect для команди)
+    const handleTeamSelect = (teamId, selectedTeam) => {
+        setTeams((prev) =>
+            prev.map((team) =>
+                team.id === teamId ? { ...team, team: selectedTeam } : team
+            )
+        );
+    };
+
+    // Оновлюємо вибрану роль (CustomSelect для ролі)
+    const handleRoleSelect = (teamId, roleId, selectedRole) => {
+        setTeams((prev) =>
+            prev.map((team) =>
+                team.id === teamId
+                    ? {
+                        ...team,
+                        roles: team.roles.map((role) =>
+                            role.id === roleId ? { ...role, role: selectedRole } : role
+                        ),
+                    }
+                    : team
+            )
+        );
+    };
+
+    // Оновлюємо вибраного користувача для ролі (CustomSelect для користувача)
+    const handleUserSelect = (teamId, roleId, selectedUser) => {
+        setTeams((prev) =>
+            prev.map((team) =>
+                team.id === teamId
+                    ? {
+                        ...team,
+                        roles: team.roles.map((role) =>
+                            role.id === roleId ? { ...role, user: selectedUser } : role
+                        ),
+                    }
+                    : team
+            )
+        );
+    };
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -53,74 +124,19 @@ const GameTeam = () => {
         };
         fetchUsers();
     }, []);
-
-
-    const updateTeams = (updatedTeam) => setTeams((prev) =>
-        prev.map((team) => (team.id === updatedTeam.id ? updatedTeam : team))
-    );
-
-    // Додавання нової команди з роллю
-    const addTeam = () => {
-        const newTeam = {
-            id: Date.now(),
-            team: null,
-            roles: [{ id: Date.now(), role: null, user: null }],
-        };
-        setTeams((prev) => [...prev, newTeam]);
-    };
-
-    // Видалення команди
-    const removeTeam = (idToRemove) => setTeams((prev) => prev.filter((team) => team.id !== idToRemove));
-
-    // Додавання ролі
-    const addRole = (teamId) => {
-        const updatedTeam = teams.find((team) => team.id === teamId);
-        updatedTeam.roles.push({ id: Date.now(), role: null, user: null });
-        updateTeams(updatedTeam);
-    };
-
-
-    const removeRole = (teamId, roleId) => {
-        const updatedTeam = teams.find((team) => team.id === teamId);
-        updatedTeam.roles = updatedTeam.roles.filter((role) => role.id !== roleId);
-        updateTeams(updatedTeam);
-    };
-
-
-    const handleTeamSelect = (teamId, selectedTeam) => {
-        const updatedTeam = teams.find((team) => team.id === teamId);
-        updatedTeam.team = selectedTeam;
-        updateTeams(updatedTeam);
-    };
-
-    // Оновлення вибраної ролі
-    const handleRoleSelect = (teamId, roleId, selectedRole) => {
-        const updatedTeam = teams.find((team) => team.id === teamId);
-        const roleToUpdate = updatedTeam.roles.find((role) => role.id === roleId);
-        roleToUpdate.role = selectedRole;
-        updateTeams(updatedTeam);
-    };
-
-    // Оновлення вибраного користувача для ролі
-    const handleUserSelectForRole = (teamId, roleId, selectedUser) => {
-        const updatedTeam = teams.find((team) => team.id === teamId);
-        const roleToUpdate = updatedTeam.roles.find((role) => role.id === roleId);
-        roleToUpdate.user = selectedUser;
-        updateTeams(updatedTeam);
-    };
-
     return (
         <>
             {teams.map((teamItem) => (
                 <div key={teamItem.id} className="team-card">
                     <CustomSelect
                         options={teamFilter}
-                        selectedOption={teamItem.team?.value}
+                        selectedOption={teamItem.team} // передаємо повний об'єкт
                         onSelect={(selected) => handleTeamSelect(teamItem.id, selected)}
                         styles="custom-select__language"
                         text="Team"
                         styleheader="custom-select-team__header"
                     />
+
                     <div className="team-card__add-role add-role">
                         <p className="add-role__number">№</p>
                         <p className="add-role__role">Role:</p>
@@ -133,18 +149,21 @@ const GameTeam = () => {
                             <div className="add-role__role">
                                 <CustomSelect
                                     options={roleFilter}
-                                    selectedOption={roleItem.role || ""}
-                                    onSelect={(selectedRole) => handleRoleSelect(teamItem.id, roleItem.id, selectedRole)}
+                                    selectedOption={roleItem.role} // передаємо об'єкт ролі
+                                    onSelect={(selectedRole) =>
+                                        handleRoleSelect(teamItem.id, roleItem.id, selectedRole)
+                                    }
                                     styles="custom-select__language"
                                     text="Role"
                                     styleheader="custom-select-team__role"
                                 />
                             </div>
+
                             <div className="add-role__name">
                                 <CustomSelect
                                     options={users.map((user) => ({ value: user._id, label: user.surname }))}
-                                    selectedOption={roleItem.user?.value}
-                                    onSelect={(selectedUser) => handleUserSelectForRole(teamItem.id, roleItem.id, selectedUser)}
+                                    selectedOption={roleItem.user}
+                                    onSelect={(selectedUser) => handleUserSelect(teamItem.id, roleItem.id, selectedUser)}
                                     styles="custom-select__language"
                                     text="Name"
                                     styleheader="custom-select-team__role"
@@ -176,9 +195,17 @@ const GameTeam = () => {
                     </button>
                 </div>
             ))}
-
+            <input
+                type="text"
+                value={teams.map(team => team.roles.map(role => role.role?.label).filter(Boolean)).flat().join(', ')}
+                readOnly
+                className="custom-input"
+            />
             <button type="button" onClick={addTeam} className="team-card__button">
                 Add Team
+            </button>
+            <button type="button" className="team-card__button">
+                Save
             </button>
         </>
     );
