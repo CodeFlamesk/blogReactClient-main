@@ -57,12 +57,9 @@ const AddGame = () => {
             fileInputRef.current.value = "";
         }
     };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Створюємо форму для відправки
         const formData = new FormData();
         const { type, date, name, map, about } = gameData;
 

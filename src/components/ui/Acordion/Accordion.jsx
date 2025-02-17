@@ -14,7 +14,7 @@ const CustomSelect = ({ options, styles, text, styleheader, onSelect }) => {  //
         setSelectedOption(option);
         setIsOpen(false);
         if (onSelect) {
-            onSelect(option); // Викликаємо onSelect, щоб передати вибір у батьківський компонент
+            onSelect(option);
         }
     };
 
