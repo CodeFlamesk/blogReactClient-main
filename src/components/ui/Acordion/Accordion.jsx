@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './CustomSelect.css';
 import ArrowDown from '../icons/ArrowDown';
-
-const CustomSelect = ({ options, styles, text, styleheader }) => {
+const CustomSelect = ({ options, styles, text, styleheader, onSelect }) => {  // Додаємо onSelect
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const dropdownRef = useRef(null);
@@ -14,6 +13,9 @@ const CustomSelect = ({ options, styles, text, styleheader }) => {
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         setIsOpen(false);
+        if (onSelect) {
+            onSelect(option); // Викликаємо onSelect, щоб передати вибір у батьківський компонент
+        }
     };
 
     const handleClickOutside = (event) => {
@@ -64,3 +66,4 @@ const CustomSelect = ({ options, styles, text, styleheader }) => {
 };
 
 export default CustomSelect;
+
