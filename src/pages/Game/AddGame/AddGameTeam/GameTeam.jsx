@@ -213,6 +213,12 @@ const GameTeam = () => {
                 readOnly
                 className="custom-input"
             />
+            <input
+                type="text"
+                value={teams.map(team => team.team?.label).filter(Boolean).join(', ')}
+                readOnly
+                className="custom-input"
+            />
 
             <button type="button" onClick={addTeam} className="team-card__button">
                 Add Team
