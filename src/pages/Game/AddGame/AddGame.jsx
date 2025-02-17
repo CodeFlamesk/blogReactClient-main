@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./add-game.scss";
 import basket from './img/basket.png';
 import GameTeam from "./AddGameTeam/GameTeam";
@@ -7,8 +7,8 @@ import GameTeam from "./AddGameTeam/GameTeam";
 const AddGame = () => {
     const [images, setImages] = useState([]);
     const [previews, setPreviews] = useState([]);
-    const fileInputRef = useRef(null);
 
+    const fileInputRef = useRef(null);
     const [gameData, setGameData] = useState({
         type: "",
         date: "",
@@ -17,67 +17,72 @@ const AddGame = () => {
         about: "",
     });
 
-    // Обробник зміни текстових інпутів
-    const handleInputChange = useCallback((e) => {
-        setGameData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-    }, []);
 
-    // Очищення попередніх URL при розмонтуванні
+    const handleInputChange = (e) => {
+        setGameData({ ...gameData, [e.target.name]: e.target.value });
+    };
+
+
+
     useEffect(() => {
-        return () => previews.forEach((url) => URL.revokeObjectURL(url));
+        return () => {
+            previews.forEach((url) => URL.revokeObjectURL(url));
+        };
     }, [previews]);
 
-    // Обробник вибору файлів
     const handleFileChange = (e) => {
-        const newFiles = Array.from(e.target.files).slice(0, 2 - images.length);
+        const newFiles = Array.from(e.target.files).slice(0, 2);
 
-        if (!newFiles.length) return;
-
-        const updatedImages = [...images, ...newFiles];
+        if (images.length + newFiles.length > 2) {
+            alert("Ви можете вибрати тільки 2 файли.");
+            return;
+        }
+        const updatedImages = [...images, ...newFiles].slice(0, 2);
         const updatedPreviews = updatedImages.map(file => URL.createObjectURL(file));
 
         setImages(updatedImages);
         setPreviews(updatedPreviews);
     };
 
-    // Видалення файлу
-    const handleDeleteFile = useCallback((index) => {
-        setImages(prev => prev.filter((_, i) => i !== index));
-        setPreviews(prev => prev.filter((_, i) => i !== index));
+    const handleDeleteFile = (index) => {
+        const updatedImages = images.filter((_, i) => i !== index);
+        const updatedPreviews = previews.filter((_, i) => i !== index);
 
         URL.revokeObjectURL(previews[index]);
 
-        if (images.length === 1 && fileInputRef.current) {
+        setImages(updatedImages);
+        setPreviews(updatedPreviews);
+
+        if (updatedImages.length === 0 && fileInputRef.current) {
             fileInputRef.current.value = "";
         }
-    }, [images, previews]);
+    };
 
-    // Відправка даних
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Створюємо форму для відправки
         const formData = new FormData();
-        Object.entries(gameData).forEach(([key, value]) => formData.append(key, value));
+        const { type, date, name, map, about } = gameData;
 
-        images.forEach(image => formData.append("gameImages", image));
+        formData.append("type", type);
+        formData.append("date", date);
+        formData.append("name", name);
+        formData.append("map", map);
+        formData.append("about", about);
 
+        if (images.length) {
+            images.forEach(image => formData.append("gameImages", image));
+        }
         console.log("📤 Відправка даних:", Object.fromEntries(formData.entries()));
 
         try {
-            const response = await fetch("http://localhost:5000/api/games", {
-                method: "POST",
-                body: formData,
-            });
 
+            const response = await fetch("http://localhost:5000/api/games", { method: "POST", body: formData });
             if (!response.ok) throw new Error(`Помилка сервера ${response.status}: ${await response.text()}`);
 
             console.log("✅ Успішно:", await response.json());
-
-            // Очищення форми після відправки
-            setGameData({ type: "", date: "", name: "", map: "", about: "" });
-            setImages([]);
-            setPreviews([]);
-            if (fileInputRef.current) fileInputRef.current.value = "";
         } catch (error) {
             console.error("❌ Помилка відправки:", error.message);
         }
@@ -87,38 +92,25 @@ const AddGame = () => {
         <div className="layout-container admin">
             <p className="admin__title">Edit game info</p>
             <form onSubmit={handleSubmit} className="admin__form new-game">
-                {["type", "date", "name", "map", "about"].map((field) => (
-                    <div key={field}>
-                        <p>{field.charAt(0).toUpperCase() + field.slice(1)}</p>
-                        {field === "about" ? (
-                            <textarea
-                                name={field}
-                                placeholder={`Enter ${field}`}
-                                className="new-game__about-game"
-                                value={gameData[field]}
-                                onChange={handleInputChange}
-                            />
-                        ) : (
-                            <input
-                                type="text"
-                                name={field}
-                                placeholder={`Enter ${field}`}
-                                className="new-game__input"
-                                value={gameData[field]}
-                                onChange={handleInputChange}
-                            />
-                        )}
-                    </div>
-                ))}
+                <p>Type</p>
+                <input type="text" name="type" placeholder="Type" className="new-game__input" onChange={handleInputChange} />
+                <p>Date</p>
+                <input type="text" name="date" placeholder="Date" className="new-game__input" onChange={handleInputChange} />
+                <p>Name</p>
+                <input type="text" name="name" placeholder="Name" className="new-game__input" onChange={handleInputChange} />
+                <p>Map</p>
+                <input type="text" name="map" placeholder="Map" className="new-game__input" onChange={handleInputChange} />
+                <p>About game</p>
+                <textarea name="about" placeholder="About game" className="new-game__about-game" onChange={handleInputChange} />
 
                 <p className="new-game__map-title">Add a tactic image (max 2)</p>
                 <div className="new-game__add-map add-map">
                     <input
                         type="file"
                         accept="image/*"
-                        multiple
                         onChange={handleFileChange}
                         ref={fileInputRef}
+                        id="fileInput"
                         className="add-map__input"
                     />
                     <label htmlFor="fileInput" className="add-map__label">
@@ -141,9 +133,10 @@ const AddGame = () => {
                     ))}
                 </div>
 
+
                 <GameTeam />
 
-                <button type="submit" className="new-game__button">Save</button>
+                <button type="submit" onClick={handleSubmit} className="new-game__button">Save</button>
             </form>
         </div>
     );
