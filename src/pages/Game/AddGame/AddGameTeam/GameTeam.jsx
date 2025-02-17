@@ -201,6 +201,19 @@ const GameTeam = () => {
                 readOnly
                 className="custom-input"
             />
+            <input
+                type="text"
+                value={teams.map(team => team.roles.map(role => role.role?.label).filter(Boolean)).flat().join(', ')}
+                readOnly
+                className="custom-input"
+            />
+            <input
+                type="text"
+                value={teams.map(team => team.roles.map(role => role.user?.label).filter(Boolean)).flat().join(', ')}
+                readOnly
+                className="custom-input"
+            />
+
             <button type="button" onClick={addTeam} className="team-card__button">
                 Add Team
             </button>
