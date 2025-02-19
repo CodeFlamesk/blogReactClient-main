@@ -19,16 +19,21 @@ const GameTeam = () => {
 
     const handleSubmitRole = async (e) => {
         e.preventDefault();
-        if (!gameRole.trim()) return alert("Введіть роль!");
+
+        const selectedRoles = roles
+            .filter(role => role.role)
+            .map(role => role.role?.value);
+
+        if (selectedRoles.length === 0) return alert("Оберіть хоча б одну роль!");
 
         try {
-            const { data } = await axios.post("http://localhost:5000/api/team-role", { gameRole });
-            console.log("Роль додано:", data);
-            setGameRole("");
+            const { data } = await axios.post("http://localhost:5000/api/team-role", { gameRole: selectedRoles });
+            console.log("Ролі додано:", data);
         } catch (error) {
-            console.error("Помилка:", error.response?.data?.message || "Не вдалося створити роль");
+            console.error("Помилка:", error.response?.data?.message || "Не вдалося створити ролі");
         }
     };
+
     const teamFilter = [
         { value: 'red', label: 'Red team' },
         { value: 'blue', label: 'Blue team' },
