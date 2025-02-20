@@ -15,24 +15,36 @@ const GameTeam = () => {
     const [roles, setRoles] = useState([
         { id: Date.now(), teamId: teams[0].id, role: null, user: null },
     ]);
-    const [gameRole, setGameRole] = useState("");
 
     const handleSubmitRole = async (e) => {
         e.preventDefault();
 
-        const selectedRoles = roles
-            .filter(role => role.role)
-            .map(role => role.role?.value);
+        const formattedTeams = teams.map(team => ({
+            team: team.team?.value,
+            roles: roles
+                .filter(role => role.teamId === team.id && role.role && role.user)
+                .map(role => ({
+                    role: role.role.value,
+                    user: role.user.value
+                }))
+        }));
 
-        if (selectedRoles.length === 0) return alert("Оберіть хоча б одну роль!");
+        const validTeams = formattedTeams.filter(team => team.team && team.roles.length > 0);
+
+        if (validTeams.length === 0) {
+            return alert("У кожній команді має бути хоча б одна роль і вибрана команда!");
+        }
 
         try {
-            const { data } = await axios.post("http://localhost:5000/api/team-role", { gameRole: selectedRoles });
-            console.log("Ролі додано:", data);
+            for (const teamData of validTeams) {
+                await axios.post("http://localhost:5000/api/team-role", teamData);
+                console.log("Команда додана:", teamData);
+            }
         } catch (error) {
-            console.error("Помилка:", error.response?.data?.message || "Не вдалося створити ролі");
+            console.error("Помилка:", error.response?.data?.message || "Не вдалося створити команди");
         }
     };
+
 
     const teamFilter = [
         { value: 'red', label: 'Red team' },
@@ -160,9 +172,16 @@ const GameTeam = () => {
                                 <button type="button" className="add-role__delete" onClick={() => removeRole(roleItem.id)}>
                                     <img src={basketRole} alt="basket" />
                                 </button>
+
                             </div>
                         ))}
+                        <input
+                            type="text"
 
+                            value={roles.map(role => role.role?.label).filter(Boolean).join(', ')}
+                            readOnly
+                            className="custom-input"
+                        />
                         <button type="button" onClick={() => addRole(teamItem.id)} className="team-card__button">
                             Add Role
                         </button>
@@ -171,24 +190,14 @@ const GameTeam = () => {
                             ! Delete Team !
                         </button>
                     </div>
+
                 );
             })}
-            <input
-                type="text"
-                value={roles.map(role => role.role?.label).filter(Boolean).join(', ')}
-                readOnly
-                className="custom-input"
-            />
 
             <button type="button" onClick={addTeam} className="team-card__button">
                 Add Team
             </button>
-            <input
-                type="text"
-                value={gameRole}
-                onChange={(e) => setGameRole(e.target.value)}
-                placeholder="Введіть роль"
-            />
+
             <button type="button" className="team-card__button" onClick={handleSubmitRole} >
                 Save
             </button>
