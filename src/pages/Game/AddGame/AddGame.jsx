@@ -57,9 +57,10 @@ const AddGame = () => {
             fileInputRef.current.value = "";
         }
     };
+    const [gameId, setGameId] = useState(null); // Додаємо стан для gameId
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         const { type, date, name, map, about } = gameData;
 
@@ -72,22 +73,28 @@ const AddGame = () => {
         if (images.length) {
             images.forEach(image => formData.append("gameImages", image));
         }
-        console.log("📤 Відправка даних:", Object.fromEntries(formData.entries()));
 
         try {
+            const response = await fetch("http://localhost:5000/api/games", {
+                method: "POST",
+                body: formData
+            });
 
-            const response = await fetch("http://localhost:5000/api/games", { method: "POST", body: formData });
             if (!response.ok) throw new Error(`Помилка сервера ${response.status}: ${await response.text()}`);
 
-            console.log("✅ Успішно:", await response.json());
+            const result = await response.json();
+            console.log("✅ Успішно:", result);
+
+            setGameId(result._id); // Зберігаємо gameId
         } catch (error) {
             console.error("❌ Помилка відправки:", error.message);
         }
     };
 
+
     return (
         <div className="layout-container admin">
-            <p className="admin__title">Edit game info</p>
+
             <form onSubmit={handleSubmit} className="admin__form new-game">
                 <p>Type</p>
                 <input type="text" name="type" placeholder="Type" className="new-game__input" onChange={handleInputChange} />
@@ -131,7 +138,8 @@ const AddGame = () => {
                 </div>
 
 
-                <GameTeam />
+                {gameId && <GameTeam gameId={gameId} />}
+
 
                 <button type="submit" onClick={handleSubmit} className="new-game__button">Save</button>
             </form>

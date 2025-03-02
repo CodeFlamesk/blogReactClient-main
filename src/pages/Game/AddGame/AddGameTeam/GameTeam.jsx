@@ -4,44 +4,61 @@ import basketRole from '../img/basketRole.png';
 import CustomSelect from 'components/ui/Acordion/Accordion';
 import { useEffect, useState } from 'react';
 
-const GameTeam = () => {
+const GameTeam = ({ gameId }) => {
     const [users, setUsers] = useState([]);
     const [teams, setTeams] = useState([{ id: Date.now(), team: null }]);
     const [roles, setRoles] = useState([{ id: Date.now(), teamId: teams[0].id, role: null, user: null }]);
 
     const handleSubmitTeamAndRoles = async (e) => {
         e.preventDefault();
+        console.log("📌 Game ID:", gameId);
+
+
+        if (!gameId || gameId.length !== 24) {
+            console.error("❌ Некоректний gameId:", gameId);
+            alert("Некоректний ID гри! Спробуйте знову.");
+            return;
+        }
+
+        console.log("📤 Відправка запиту з даними:", { gameId, teams, roles });
 
         try {
-            const createdTeams = {}; // Мапінг: старий team.id → новий team._id
+            const createdTeams = {};
 
-            // 🔹 1. Створюємо команди
+
             for (const team of teams) {
                 if (!team.team) {
-                    throw new Error("Кожна команда повинна мати колір!");
+                    throw new Error("❌ Кожна команда повинна мати колір!");
                 }
 
+                console.log(`🚀 Створення команди: ${team.team.value}`);
+
                 const response = await axios.post("http://localhost:5000/api/teams", {
+                    game: gameId,
                     color: team.team.value,
-                    players: []  // Ініціалізуємо як порожній масив
+                    players: []
                 });
 
-                createdTeams[team.id] = response.data._id; // Записуємо новий teamId
+                createdTeams[team.id] = response.data._id;
+                console.log(`✅ Команда створена: ${response.data._id}`);
             }
 
-            // 🔹 2. Створюємо ролі (TeamRole) і зберігаємо мапінг: { teamId, roleId }
+
             const createdRoles = [];
             for (const role of roles) {
                 const newTeamId = createdTeams[role.teamId];
 
                 if (newTeamId && role.role && role.user) {
+                    console.log(`🎭 Створення ролі ${role.role.value} для команди ${newTeamId}`);
+
                     const roleResponse = await axios.post("http://localhost:5000/api/team-role", {
                         role: role.role.value,
                         user: role.user.value,
                         teamId: newTeamId
                     });
-                    // Зберігаємо об'єкт із новим teamId та roleId
+
                     createdRoles.push({ teamId: newTeamId, roleId: roleResponse.data._id });
+                    console.log(`✅ Роль створена: ${roleResponse.data._id}`);
                 }
             }
 
@@ -50,6 +67,7 @@ const GameTeam = () => {
                 const teamRoles = createdRoles
                     .filter((r) => r.teamId === newTeamId)
                     .map((r) => r.roleId);
+
                 return {
                     teamId: newTeamId,
                     players: teamRoles  // Масив ID ролей для цієї команди
@@ -58,20 +76,21 @@ const GameTeam = () => {
 
             // 🔹 4. Оновлюємо команди з ролями (players)
             for (const teamData of teamsWithPlayers) {
+                console.log(`🔄 Оновлення команди ${teamData.teamId} з гравцями`, teamData.players);
+
                 await axios.put(`http://localhost:5000/api/teams/${teamData.teamId}`, {
                     players: teamData.players  // Передаємо масив ID ролей
                 });
-                console.log(`Ролі успішно додані до команди ${teamData.teamId}`);
+
+                console.log(`✅ Ролі успішно додані до команди ${teamData.teamId}`);
             }
 
-            alert("Команди та ролі успішно збережені!");
+            alert("🎉 Команди та ролі успішно збережені!");
         } catch (error) {
-            console.error("Помилка при створенні команд і ролей:", error.response);
+            console.error("❌ Помилка при створенні команд і ролей:", error.response);
             alert(error.response?.data?.message || "Помилка при створенні команд і ролей!");
         }
-
     };
-
 
 
 

@@ -1,0 +1,28 @@
+.tabs-container {
+    display: flex;
+    width: 100%;
+    max-width: 650px;
+    justify-content: space-between;
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    border-radius: 24px;
+    margin-top: 30px;
+}
+
+.active {
+    padding: 5px 10px;
+    color: #ffffff;
+    border: 1px solid;
+    border-radius: 15px;
+
+    background: #3f0858ab;
+}
+
+.button-tabs {
+    padding: 5px 10px;
+    color: #8a8383;
+    border: 1px solid;
+    border-radius: 15px;
+}

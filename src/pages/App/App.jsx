@@ -8,6 +8,7 @@ import PageNotFound from "pages/PageNotFound/PageNotFound";
 import { changeLoadingAuth } from "store/userReducer";
 import Layout from "../Layout/Layout";
 import UserDashboard from "pages/Game/UserDashboard/UserDashboard";
+import AllGames from "pages/AllGames/AllGames";
 
 // 📌 Додаємо lazy імпорт
 const Home = lazy(() => import("../Home/Home"));
@@ -64,6 +65,7 @@ function App() {
                     <Route path="podcast" element={<Podcast />} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="allgame" element={<AllGames />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<Sign />} />
 

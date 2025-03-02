@@ -1,12 +1,13 @@
+import "./tabs-games.scss";
 import { NavLink } from 'react-router-dom';
 const TabsGame = () => {
     return (
-        <div>
+        <div className='tabs-container'>
             <NavLink
                 to={`addgame`}
                 className={({ isActive }) => isActive ? "active" : "button-tabs"}
             >
-                Edit
+                Create
             </NavLink>
             <NavLink
                 to={`userinfo`}
@@ -14,12 +15,7 @@ const TabsGame = () => {
             >
                 Dashboard
             </NavLink>
-            <NavLink
-                to={`addgame`}
-                className={({ isActive }) => isActive ? "active" : "button-tabs"}
-            >
-                Edit
-            </NavLink>
+
         </div>
     );
 };

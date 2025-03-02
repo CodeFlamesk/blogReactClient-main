@@ -18,12 +18,12 @@ const menu = [
         page: "Home"
     },
     {
-        to: "/admin",
+        to: "/admin/addgame",
         page: "Create Game"
 
     },
     {
-        to: "/game",
+        to: "/allgame",
         page: "Game"
     },
     {
