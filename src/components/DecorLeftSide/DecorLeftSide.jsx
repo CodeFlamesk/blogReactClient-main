@@ -25,11 +25,11 @@ const DecorLeftSide = () => {
 
 
             if (scrollY > lastScrollY) {
-                arrowDown.classList.remove('active');
-                arrowUp.classList.add('active');
+                arrowDown.classList.remove('actives');
+                arrowUp.classList.add('actives');
             } else {
-                arrowUp.classList.remove('active');
-                arrowDown.classList.add('active');
+                arrowUp.classList.remove('actives');
+                arrowDown.classList.add('actives');
             }
 
             lastScrollY = scrollY;

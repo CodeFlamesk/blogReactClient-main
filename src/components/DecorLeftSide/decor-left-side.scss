@@ -71,7 +71,7 @@
             transform: rotate(180deg);
         }
 
-        &.active {
+        &.actives {
             animation-play-state: running;
             /* Запуск анімації */
         }
@@ -90,7 +90,7 @@
             height: 100%;
         }
 
-        &.active {
+        &.actives {
             animation-play-state: running;
             /* Запуск анімації */
         }

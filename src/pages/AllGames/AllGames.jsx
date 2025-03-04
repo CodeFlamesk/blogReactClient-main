@@ -1,32 +1,45 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./all-games.scss";
+import Container from "components/Container/Container";
 
 const AllGames = () => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/games");
-                setGames(response.data);
-            } catch (error) {
-                console.error("Error fetching games:", error.response?.data || error.message);
-            }
-        };
-
-        fetchGames();
+        axios.get("http://localhost:5000/api/games")
+            .then(({ data }) => setGames(data))
+            .catch((error) => console.error("Помилка при отриманні ігор:", error));
     }, []);
 
     return (
-        <div>
-            {games.map((game) => (
-                <div key={game._id} className="game-card">
-                    <h2 className="names">{games.name}</h2>
-                    <p><strong>Карта:</strong> {game.map}</p>
-                </div>
-            ))}
-        </div>
+        <Container>
+            <div className="game-box">
+                {games.map(game => (
+                    <Link to={`/game/${game._id}`} key={game._id} className="game-box__game-card game-card">
+
+                        <p className="game-title">Game:</p>
+                        <div className="game-card__info game-info">
+                            <p className="game-info__tytle">Type:</p>
+                            <p className="game-info__text">{game.type}</p>
+                        </div>
+                        <div className="game-card__info game-info">
+                            <p className="game-info__tytle">Name:</p>
+                            <p className="game-info__text">{game.name}</p>
+                        </div>
+                        <div className="game-card__info game-info">
+                            <p className="game-info__tytle">Map:</p>
+                            <p className="game-info__text"> {game.map}</p>
+                        </div>
+                        <div className="game-card__info game-info">
+                            <p className="game-info__tytle">Data:</p>
+                            <p className="game-info__text"> {game.date}</p>
+                        </div>
+                    </Link>
+                ))}
+            </div>
+        </Container>
     );
 };
 
