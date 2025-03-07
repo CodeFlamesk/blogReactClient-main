@@ -44,15 +44,21 @@
         gap: 25px;
 
 
-        p {
-            color: #B59270;
-            font-size: 36px;
-            text-shadow:
-                -1px -1px 3px #131313,
-                1px -1px 3px #131313,
-                -1px 1px 3px #131313,
-                1px 1px 3px #131313;
-        }
+
+    }
+}
+
+.max-cyba {
+    &__title {
+
+        color: #B59270;
+        font-size: 36px;
+        text-shadow:
+            -1px -1px 3px #131313,
+            1px -1px 3px #131313,
+            -1px 1px 3px #131313,
+            1px 1px 3px #131313;
+
     }
 }
 

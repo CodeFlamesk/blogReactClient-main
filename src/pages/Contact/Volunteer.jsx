@@ -33,7 +33,10 @@ const Volunteer = () => {
           <img src={report2} alt="report2" />
         </div>
         <div className="volunteer__max-cyba max-cyba">
-          <p>Our Volunteer</p>
+          <div className="max-cyba__title">
+            <p>Our </p>
+            <p >Military Aid Volunteer</p>
+          </div>
           <div className="max-cyba__box-img">
             <img src={volunteer} alt="volunteer" />
           </div>
