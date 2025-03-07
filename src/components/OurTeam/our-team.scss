@@ -21,6 +21,9 @@
         flex-direction: column;
         width: 100%;
         max-width: 1000px;
+        background: none;
+        border: none;
+        box-shadow: none;
     }
 
     @media (max-width: 1280px) {

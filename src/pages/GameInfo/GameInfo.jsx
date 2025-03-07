@@ -9,11 +9,11 @@ const GameInfo = () => {
     const { gameId } = useParams();
     const [game, setGame] = useState(null);
     const [teams, setTeams] = useState([]);
-    const [users, setUsers] = useState({}); // Стан для збереження інформації про користувачів
+    const [users, setUsers] = useState({});
 
-    // Функція для отримання даних користувача за ID
+
     const fetchUserById = async (userId) => {
-        console.log("Шукаємо користувача за ID:", userId); // Виводимо ID, за яким робимо запит
+        console.log("Шукаємо користувача за ID:", userId);
         try {
             const response = await axios.get(`http://localhost:5000/api/user/users/${userId}`);
             return response.data;
@@ -36,7 +36,7 @@ const GameInfo = () => {
             .then(({ data }) => {
                 setTeams(data);
 
-                // Отримуємо всі унікальні ID гравців з поля `gameRole[0].user`
+
                 const playerIds = [...new Set(data.flatMap(team =>
                     team.players.flatMap(player =>
                         player.gameRole.map(role => role.user)
@@ -44,7 +44,7 @@ const GameInfo = () => {
                 )];
 
                 if (playerIds.length > 0) {
-                    // Запит на отримання деталей гравців
+
                     axios.get(`http://localhost:5000/api/user/users`, { params: { ids: playerIds } })
                         .then(({ data }) => {
                             const usersMap = data.reduce((acc, user) => {
@@ -59,10 +59,9 @@ const GameInfo = () => {
             .catch(error => console.error("Помилка при отриманні команд:", error));
     }, [gameId]);
 
-    // Оновлення даних користувачів, якщо є нові гравці
+
     useEffect(() => {
         if (teams.length > 0) {
-            // Отримуємо всі унікальні ID гравців з поля `gameRole[0].user`
             const playerIds = teams.flatMap(team =>
                 team.players.flatMap(player =>
                     player.gameRole.map(role => role.user)
@@ -91,30 +90,30 @@ const GameInfo = () => {
         <>
             <Container>
                 <div className="game-card">
-                    <p className="game-title">{game.name}</p>
+                    <p className="game-card__game-title">{game.name}</p>
 
                     <div className="game-card__info game-info">
-                        <p className="game-info__tytle">Type:</p>
+                        <p className="game-info__title">Type:</p>
                         <p className="game-info__text">{game.type}</p>
                     </div>
 
                     <div className="game-card__info game-info">
-                        <p className="game-info__tytle">Name:</p>
+                        <p className="game-info__title">Name:</p>
                         <p className="game-info__text">{game.name}</p>
                     </div>
 
                     <div className="game-card__info game-info">
-                        <p className="game-info__tytle">Map:</p>
+                        <p className="game-info__title">Map:</p>
                         <p className="game-info__text">{game.map}</p>
                     </div>
 
                     <div className="game-card__info game-info">
-                        <p className="game-info__tytle">Date:</p>
+                        <p className="game-info__title">Date:</p>
                         <p className="game-info__text">{game.date}</p>
                     </div>
 
                     <div className="game-card__info game-info">
-                        <p className="game-info__tytle">About:</p>
+                        <p className="game-info__title">About:</p>
                         <p className="game-info__text">{game.about}</p>
                     </div>
 
@@ -124,23 +123,24 @@ const GameInfo = () => {
                         ))}
                     </div>
 
-                    {/* Відображення команд */}
+                    <p className="game-card__teams-title">Teams:</p>
                     <div className="game-card__info teams">
-                        <p className="game-info__tytle">Teams:</p>
                         {teams.length > 0 ? (
                             teams.map(team => (
                                 <div key={team._id} className="team">
+                                    <p className="team__color" style={{ color: team.color, borderColor: `${team.color}` }}>{team.color}</p>
 
-                                    <p className="team__color">Color: {team.color}</p>
-                                    <div className="team__players">
+                                    <div className="team__players " >
+                                        <div className="team-card__add-role add-role" style={{ color: team.color, borderColor: `${team.color}` }}>
+                                            <p className="add-role__number" style={{ borderColor: `${team.color}` }}>№</p>
+                                            <p className="add-role__role" style={{ borderColor: `${team.color}` }}>Role:</p>
+                                            <p className="add-role__name" style={{ borderColor: `${team.color}` }}>Name:</p>
+                                        </div>
 
-                                        <ul>
-                                            {team.players.map(player => {
-                                                // Отримуємо ID користувача з поля `gameRole[0].user`
+                                        <ul className="team__user-roles">
+                                            {team.players.map((player, index) => {
                                                 const userId = player.gameRole[0]?.user;
-                                                const user = users[userId]; // Отримуємо дані користувача за ID
-
-                                                // Якщо користувача немає в стані, робимо запит для отримання його даних
+                                                const user = users[userId];
                                                 if (!user && userId) {
                                                     fetchUserById(userId).then(userData => {
                                                         if (userData) {
@@ -154,9 +154,16 @@ const GameInfo = () => {
 
                                                 return (
                                                     <li key={player._id}>
-                                                        {user
-                                                            ? `${user.name} ${user.surname} (ID: ${userId}) - Роль: ${player.gameRole?.map(role => role.role).join(", ") || "Немає ролі"}`
-                                                            : `Завантаження даних користувача...`}
+                                                        {user ? (
+                                                            <div className="team-card__add-role add-role" style={{ color: team.color, borderColor: `${team.color}` }}>
+
+                                                                <p className="add-role__number" style={{ borderColor: `${team.color}` }}>{index + 1}</p>
+                                                                <p className="add-role__role" style={{ borderColor: `${team.color}` }}>{player.gameRole?.map(role => role.role).join(", ")}</p>
+                                                                <p className="add-role__name" style={{ borderColor: `${team.color}` }}>{user.surname}</p>
+                                                            </div>
+                                                        ) : (
+                                                            "Завантаження даних користувача..."
+                                                        )}
                                                     </li>
                                                 );
                                             })}
@@ -167,6 +174,8 @@ const GameInfo = () => {
                         ) : (
                             <p className="game-info__text">Немає команд</p>
                         )}
+
+
                     </div>
                 </div>
             </Container>

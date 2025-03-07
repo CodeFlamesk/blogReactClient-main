@@ -31,8 +31,8 @@ const menu = [
         page: "Mini Game"
     },
     {
-        to: "/contact",
-        page: "Contact Us"
+        to: "/volunteer",
+        page: "Our Volunteer"
     },
 ]
 

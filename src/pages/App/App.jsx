@@ -64,7 +64,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="blog" element={<Blog />} />
                     <Route path="podcast" element={<Podcast />} />
-                    <Route path="contact" element={<Contact />} />
+                    <Route path="volunteer" element={<Contact />} />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="allgame" element={<AllGames />} />
                     <Route path="game/:gameId" element={<GameInfo />} />

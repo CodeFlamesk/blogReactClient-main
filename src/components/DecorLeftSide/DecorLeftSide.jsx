@@ -18,11 +18,13 @@ const DecorLeftSide = () => {
             const viewportHeight = window.innerHeight;
             const stopPosition = pageHeight - viewportHeight - 176;
 
+            const atTop = scrollY === 0;
+            const atBottom = scrollY >= stopPosition;
 
-            const shouldShowArrows = scrollY < stopPosition;
-            arrowDown.style.display = shouldShowArrows ? 'block' : 'none';
-            arrowUp.style.display = shouldShowArrows ? 'block' : 'none';
-
+            arrowDown.style.opacity = scrollY < stopPosition ? '1' : '0';
+            arrowUp.style.opacity = atTop || atBottom ? '0' : '1';
+            arrowUp.style.transition = 'opacity 0.3s ease';
+            arrowDown.style.transition = 'opacity 0.3s ease';
 
             if (scrollY > lastScrollY) {
                 arrowDown.classList.remove('actives');
@@ -40,6 +42,8 @@ const DecorLeftSide = () => {
             });
         };
 
+        arrowUp.style.opacity = '0';
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -47,7 +51,7 @@ const DecorLeftSide = () => {
     return (
         <div className="decor-page">
             <div className="decor-page__line"></div>
-            <div className="decor-page__arrow">
+            <div className="decor-page__arrow" style={{ opacity: 0 }}>
                 <img src={arrow} alt="arrow" />
             </div>
             <div className="decor-page__over-img" data-bottom="50%">
