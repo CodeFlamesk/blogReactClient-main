@@ -11,13 +11,14 @@ import UserDashboard from "pages/Game/UserDashboard/UserDashboard";
 import AllGames from "pages/AllGames/AllGames";
 import GameInfo from "pages/GameInfo/GameInfo";
 
+
 // 📌 Додаємо lazy імпорт
 const Home = lazy(() => import("../Home/Home"));
 const Blog = lazy(() => import("../Blog/Blog"));
 const Podcast = lazy(() => import("../Podcast/Podcast"));
 const LayoutGame = lazy(() => import("pages/Game/LayoutAdmin/LayoutAdmin"));
 const AddGame = lazy(() => import("pages/Game/AddGame/AddGame"));
-const Contact = lazy(() => import("../Contact/Contact"));
+const Volunteer = lazy(() => import("../Contact/Volunteer"));
 const Dashboard = lazy(() => import("../Dashboard/Dashboard"));
 const Login = lazy(() => import("../Auth/Login"));
 const Sign = lazy(() => import("../Auth/Sign"));
@@ -64,7 +65,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="blog" element={<Blog />} />
                     <Route path="podcast" element={<Podcast />} />
-                    <Route path="volunteer" element={<Contact />} />
+                    <Route path="volunteer" element={<Volunteer />} />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="allgame" element={<AllGames />} />
                     <Route path="game/:gameId" element={<GameInfo />} />
