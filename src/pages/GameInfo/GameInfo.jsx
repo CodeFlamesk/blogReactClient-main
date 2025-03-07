@@ -130,9 +130,10 @@ const GameInfo = () => {
                         {teams.length > 0 ? (
                             teams.map(team => (
                                 <div key={team._id} className="team">
+
                                     <p className="team__color">Color: {team.color}</p>
                                     <div className="team__players">
-                                        <p>Players:</p>
+
                                         <ul>
                                             {team.players.map(player => {
                                                 // Отримуємо ID користувача з поля `gameRole[0].user`
