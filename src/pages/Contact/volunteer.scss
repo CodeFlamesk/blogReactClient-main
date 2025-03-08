@@ -292,6 +292,21 @@
 
         }
     }
+
+    .max-cyba {
+
+        &__title {
+            max-width: 400px;
+            color: #B59270;
+            font-size: 28px;
+            text-shadow:
+                -1px -1px 3px #131313,
+                1px -1px 3px #131313,
+                -1px 1px 3px #131313,
+                1px 1px 3px #131313;
+
+        }
+    }
 }
 
 
