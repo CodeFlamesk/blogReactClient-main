@@ -112,13 +112,7 @@
     margin-bottom: 20px;
 }
 
-.max-cyba__btn-instagram:hover {
-    box-shadow: 0px 0px 25px 5px rgba(207, 67, 67, 0.548);
-    border: 1px solid #C13584;
-    border-radius: 20px;
-    color: #C13584;
 
-}
 
 @media (max-width:1280px) {
     .volunteer__img-box {
@@ -303,6 +297,13 @@
 
 
 @media (hover: none) {
+    .max-cyba__btn-instagram:hover {
+        box-shadow: 0px 0px 25px 5px rgba(207, 67, 67, 0.548);
+        border: 1px solid #C13584;
+        border-radius: 20px;
+        color: #C13584;
+
+    }
 
     .swiper-button-prev:hover,
     .swiper-button-next:hover {
