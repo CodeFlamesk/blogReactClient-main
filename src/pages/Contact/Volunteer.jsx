@@ -20,6 +20,7 @@ import report2 from "./img/report2.webp"
 import report3 from "./img/report3.webp"
 import report4 from "./img/report4.webp"
 import SmallFooter from "components/footer/SmallFooter";
+import Container from "components/Container/Container";
 
 const images = Object.values(import.meta.glob("./img/reporting*.webp", { eager: true }))
   .map((img) => img.default);
@@ -78,7 +79,15 @@ const Volunteer = () => {
           </div>
         </div>
       </div>
-      <div className="volunter-page__slider">
+
+
+      <div className="texts">
+        <p>
+          Наша команда не тільки грає , а і активно допомагає Воїнам , які боронять нашу країну.
+        </p>
+      </div>
+
+      <div className="volunter-page__slider slider-contant">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={20}
@@ -87,8 +96,19 @@ const Volunteer = () => {
           pagination={{ clickable: true }}
           loop={true}
           autoplay={{
-            delay: 2500,  // Час між слайдами (в мс)
-            disableOnInteraction: false,  // Автопрокрутка не зупиняється при взаємодії з слайдером
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
           }}
         >
           {images.map((image, index) => (
@@ -101,7 +121,7 @@ const Volunteer = () => {
 
 
       </div>
-      <SmallFooter />
+      {/*  <SmallFooter /> */}
     </div>
   );
 };
