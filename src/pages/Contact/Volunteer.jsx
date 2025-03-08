@@ -29,9 +29,13 @@ const Volunteer = () => {
   return (
     <div className="volunter-page">
       <div className="volunter-page__volunteer volunteer">
-        <div className="volunteer__img-box">
-          <img src={report1} alt="report1" />
-          <img src={report2} alt="report2" />
+        <div className="volunteer__img-box img-box">
+          <div className="img-box__contant image-box">
+            <img src={report1} alt="report1" />
+          </div>
+          <div className="img-box__contant image-box">
+            <img src={report2} alt="report2" />
+          </div>
         </div>
         <div className="volunteer__max-cyba max-cyba">
           <div className="max-cyba__title">
@@ -49,9 +53,13 @@ const Volunteer = () => {
             Instagram
           </a>
         </div>
-        <div className="volunteer__img-box">
-          <img src={report3} alt="report3" />
-          <img src={report4} alt="report4" />
+        <div className="volunteer__img-box img-box">
+          <div className="img-box__contant image-box">
+            <img src={report3} alt="report3" />
+          </div>
+          <div className="img-box__contant image-box">
+            <img src={report4} alt="report4" />
+          </div>
         </div>
       </div>
       <div className="volunter-page__report report">
