@@ -286,22 +286,29 @@
                 border-radius: 8px;
             }
         }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #dfd332f6;
+            padding: 0px;
+            border: none;
+            background: #a78d7480;
+            width: 50px;
+            height: 60px;
+
+        }
     }
 }
 
 
-.swiper-button-next:hover {
 
-    color: #58493a;
-    background: #a78d74;
-    border-radius: 0px;
-    border: 2px solid #58493a;
-}
+@media (hover: none) {
 
-.swiper-button-prev:hover {
-
-    color: #58493a;
-    background: #a78d74;
-    border-radius: 0px;
-    border: 2px solid #58493a;
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+        color: #58493a;
+        background: #a78d74;
+        border-radius: 0px;
+        border: 2px solid #58493a;
+    }
 }
