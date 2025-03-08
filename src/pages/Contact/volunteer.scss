@@ -202,7 +202,7 @@
         border: 1px solid #B59270;
         border-radius: 40px;
         max-width: max-content;
-
+        text-align: center;
     }
 }
 
@@ -218,6 +218,7 @@
         width: 90%;
         max-width: 1800px;
         padding-bottom: 30px;
+        align-items: center;
     }
 
     .swiper-slide {
@@ -244,12 +245,14 @@
         justify-items: center;
         color: #dfd332f6;
         background: #a78d74;
-        border-radius: 50px;
+        border-radius: 25px;
         padding: 20px;
         width: 65px;
         height: 65px;
         transition: all 0.3s ease;
         border: 2px solid #a78d74;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .swiper-pagination-bullet {
