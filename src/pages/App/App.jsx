@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import dashboardAction from "action/dashboardAction";
+
 import authAction from "action/authAction";
 import LoadingApp from "components/Loading/LoadingApp";
 import PageNotFound from "pages/PageNotFound/PageNotFound";
@@ -15,7 +15,7 @@ import GameInfo from "pages/GameInfo/GameInfo";
 // 📌 Додаємо lazy імпорт
 const Home = lazy(() => import("../Home/Home"));
 const Blog = lazy(() => import("../Blog/Blog"));
-const Podcast = lazy(() => import("../Podcast/Podcast"));
+
 const LayoutGame = lazy(() => import("pages/Game/LayoutAdmin/LayoutAdmin"));
 const AddGame = lazy(() => import("pages/Game/AddGame/AddGame"));
 const Volunteer = lazy(() => import("../Contact/Volunteer"));
@@ -25,22 +25,11 @@ const Sign = lazy(() => import("../Auth/Sign"));
 const Settings = lazy(() => import("../UserSettings/UserSettings"));
 
 function App() {
-    const activePostId = useSelector(store => store.dashboard.activePostId);
-    const categoryId = useSelector(store => store.dashboard.categoryId);
+
     const { isLoading, isAuth } = useSelector(store => store.user);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(dashboardAction.getPost(activePostId));
-    }, [activePostId]);
 
-    useEffect(() => {
-        dispatch(dashboardAction.getAllPost(categoryId));
-    }, [categoryId]);
-
-    useEffect(() => {
-        dispatch(dashboardAction.getCategory());
-    }, []);
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -64,7 +53,7 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="blog" element={<Blog />} />
-                    <Route path="podcast" element={<Podcast />} />
+
                     <Route path="volunteer" element={<Volunteer />} />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="allgame" element={<AllGames />} />
