@@ -6,8 +6,6 @@ import "./settings-content.scss"
 import { useSelector } from "react-redux"
 import ChangeInfo from "./ChangeInfo/ChangeInfo"
 import DeleteAccount from "./DeleteAccount/DeleteAccount"
-import ChangeAvatar from "./ChangeAvatar/ChangeAvatar"
-import AddNewPost from "../AddNewPost/AddNewPost"
 
 
 
@@ -21,29 +19,24 @@ const data = {
 
 const SettingsContent = () => {
 
-    const {paramSettings} = useSelector(store => store.user);
+    const { paramSettings } = useSelector(store => store.user);
 
     return (
         <div className='settings-content'>
             <div className="settings-content__title">
-                <Title24 text={data[paramSettings]}/>
+                <Title24 text={data[paramSettings]} />
             </div>
             <div className="settings-content__body">
                 {
-                    paramSettings === "changePassword" && <ChangePassword/>
+                    paramSettings === "changePassword" && <ChangePassword />
                 }
                 {
-                    paramSettings === "changeInfo" && <ChangeInfo/>
+                    paramSettings === "changeInfo" && <ChangeInfo />
                 }
                 {
-                    paramSettings === "deleteAcc" && <DeleteAccount/>
+                    paramSettings === "deleteAcc" && <DeleteAccount />
                 }
-                {
-                    paramSettings === "changeAvatar" && <ChangeAvatar/>
-                }
-                {
-                    paramSettings === "addPost" && <AddNewPost/>
-                }
+
             </div>
         </div>
     )

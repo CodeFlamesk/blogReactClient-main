@@ -8,24 +8,18 @@ import { changeParamSettings } from 'store/userReducer'
 const data = [
     {
         text: "Сhange Password",
-        params:"changePassword"
+        params: "changePassword"
     },
     {
         text: "Сhange User Info",
-        params:"changeInfo"
+        params: "changeInfo"
     },
     {
         text: "Delete",
-        params:"deleteAcc"
+        params: "deleteAcc"
     },
-    {
-        text: "Change Avatar",
-        params:"changeAvatar"
-    },
-    {
-        text: "Add Post",
-        params:"addPost"
-    },
+
+
 ]
 
 const SettingsPanelButtons = () => {
@@ -35,9 +29,9 @@ const SettingsPanelButtons = () => {
     return (
         <div className='buttons-list-user'>
             {
-                data.map(({text, params}) => {
+                data.map(({ text, params }) => {
                     return (
-                        <ButtonRight cb={() => dispatch(changeParamSettings(params))} text={text}/>
+                        <ButtonRight cb={() => dispatch(changeParamSettings(params))} text={text} />
                     )
                 })
             }
