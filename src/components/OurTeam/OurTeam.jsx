@@ -32,8 +32,7 @@ const OurTeam = () => {
                         <div key={user._id} className="team__box box-user">
                             <div className="box-user__user user">
                                 <p>{user.surname}</p>
-                                <p>({user.name})</p>
-                                {/* <p className="role">{user.role}</p> */}
+
                             </div>
                         </div>
                     ))}

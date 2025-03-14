@@ -48,12 +48,12 @@ const Header = () => {
         }
     }, [dispatch]);
 
-
     const [active, setActive] = useState(false);
 
+    const closeMenu = () => setActive(false);
 
     return (
-        <header className={`header ${active ? " _active" : null}`}>
+        <header className={`header ${active ? " _active" : ""}`}>
             <div className="header__body">
                 <div className="header__container">
                     <div className="header__content">
@@ -66,31 +66,32 @@ const Header = () => {
                         </div>
                         <nav className="header__menu menu">
                             <ul className="menu__list">
-
                                 {menu.map(({ to, page }) => {
-                                    if ((to === "/game" && role === "USER") || (to === "/admin" && !["ADMIN", "LEADER"].includes(role))) {
+                                    if (
+                                        (to === "/allgame" && role === "USER") ||
+                                        (["/admin/addgame"].includes(to) && !["ADMIN", "LEADER"].includes(role))
+                                    ) {
                                         return null;
                                     }
                                     return (
                                         <li key={to} className="menu__item">
-                                            <NavLink to={to} className="menu__link">
+                                            <NavLink to={to} className="menu__link" onClick={closeMenu}>
                                                 {page}
                                             </NavLink>
                                         </li>
                                     );
                                 })}
 
+
                             </ul>
                         </nav>
                         <AuthHeader />
                         <button onClick={() => setActive(prev => !prev)} className="icon-menu" aria-label="menu">
-                            <svg className={`ham hamRotate ham8 ${active ? " active" : null}`} viewBox="0 0 100 100" width="80" >
+                            <svg className={`ham hamRotate ham8 ${active ? " active" : ""}`} viewBox="0 0 100 100" width="80">
                                 <path
                                     className="line top"
                                     d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
-                                <path
-                                    className="line middle"
-                                    d="m 30,50 h 40" />
+                                <path className="line middle" d="m 30,50 h 40" />
                                 <path
                                     className="line bottom"
                                     d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />

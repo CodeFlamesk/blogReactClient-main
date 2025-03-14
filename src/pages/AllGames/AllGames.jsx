@@ -21,19 +21,19 @@ const AllGames = () => {
 
                         <p className="game-title">Game:</p>
                         <div className="game-card__info game-info">
-                            <p className="game-info__tytle">Type:</p>
+                            <p className="game-info__title">Type:</p>
                             <p className="game-info__text">{game.type}</p>
                         </div>
                         <div className="game-card__info game-info">
-                            <p className="game-info__tytle">Name:</p>
+                            <p className="game-info__title">Name:</p>
                             <p className="game-info__text">{game.name}</p>
                         </div>
                         <div className="game-card__info game-info">
-                            <p className="game-info__tytle">Map:</p>
+                            <p className="game-info__title">Map:</p>
                             <p className="game-info__text"> {game.map}</p>
                         </div>
                         <div className="game-card__info game-info">
-                            <p className="game-info__tytle">Data:</p>
+                            <p className="game-info__title">Data:</p>
                             <p className="game-info__text"> {game.date}</p>
                         </div>
                     </Link>

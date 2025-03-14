@@ -69,10 +69,13 @@
 .team-block {
 
     &__container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: auto;
+        display: flex;
+
+        justify-content: space-evenly;
         gap: 30px;
+        /*   grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: auto;
+        gap: 30px; */
 
     }
 }

@@ -23,8 +23,8 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const {
-        active, 
-        modalsActiveForgot, 
+        active,
+        modalsActiveForgot,
         modalsForgotCode,
         modalsChangePassword,
         thankError
@@ -58,63 +58,63 @@ const Login = () => {
         <>
             {
                 !isAuth && <section className="main-forms">
-                <div className="main-forms__container">
-                    <div className="main-forms__body-login">
-                        <div className='main-forms__header-item header-item block-margin'>
-                            <div className='header-item__title'>
-                                <h2><span>Login</span></h2>
-                            </div>
-                            <div className='header-item__text text'>
-                                <p>Welcome back! Please log in to access your account.</p>
-                            </div>
-                        </div>
-                        <div className="main-forms__form-login form-login">
-                            <div className="form-login__body">
-                                <Input setValue={setEmail} value={email} id={v4()} type={"email"} holder={"Enter your Email"}  />
-                                <Input setValue={setPassword} value={password} id={v4()} type={"text"} holder={"Enter your Password"}  />
-                            </div>
-                            <div className="form__content">
-                                <div className="main-forms__title">
-                                    <button type="button" className="main-forms__link" onClick={(e) => onActiveForgot(e)}>Forgot Password?</button>
+                    <div className="main-forms__container">
+                        <div className="main-forms__body-login">
+                            <div className='main-forms__header-item header-item block-margin'>
+                                <div className='header-item__title'>
+                                    <h2><span>Login</span></h2>
                                 </div>
-                                <div className="form-login__buttons">
-                                    <RightButton cb={() => {
-                                        onLogin(email, password)
-                                            .catch(setPassword(""))
-                                            .finally(() => {
-                                                setPassword(""), setEmail("")
-                                            })
-                                    }}  type={'submit'} text={"Login"}/>
-                                    <RightButtonLink text={"Sign Up"} to={"/signup"}/>
-                                </div>	
+                                <div className='header-item__text text'>
+                                    <p>Welcome back! Please log in to access your account.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="main-forms__items">
-                            <Images/>
+                            <div className="main-forms__form-login form-login">
+                                <div className="form-login__body">
+                                    <Input setValue={setEmail} value={email} id={v4()} type={"email"} holder={"Enter your Email"} />
+                                    <Input setValue={setPassword} value={password} id={v4()} type={"password"} holder={"Enter your Password"} />
+                                </div>
+                                <div className="form__content">
+                                    <div className="main-forms__title">
+                                        <button type="button" className="main-forms__link" onClick={(e) => onActiveForgot(e)}>Forgot Password?</button>
+                                    </div>
+                                    <div className="form-login__buttons">
+                                        <RightButton cb={() => {
+                                            onLogin(email, password)
+                                                .catch(setPassword(""))
+                                                .finally(() => {
+                                                    setPassword(""), setEmail("")
+                                                })
+                                        }} type={'submit'} text={"Login"} />
+                                        <RightButtonLink text={"Sign Up"} to={"/signup"} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="main-forms__items">
+                                <Images />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
             }
-            
+
             {
-                active && 
-                    <ModalsParent closeB={true} cb={() => dispatch(changeActiveModal(false))}>
-                        <ModalsThank>
-                            {
-                                thankError &&  <RightButton cb={() => onForgotPassword()} text={"Восстановить пароль?"}/>
-                            }
-                        </ModalsThank>
-                    </ModalsParent>
+                active &&
+                <ModalsParent closeB={true} cb={() => dispatch(changeActiveModal(false))}>
+                    <ModalsThank>
+                        {
+                            thankError && <RightButton cb={() => onForgotPassword()} text={"Восстановить пароль?"} />
+                        }
+                    </ModalsThank>
+                </ModalsParent>
             }
             {
-                modalsActiveForgot && 
-                    <ModalsParent cb={() => changeOff()}>
-                        { !modalsForgotCode &&  <ModalForgot/>}
-                        { modalsForgotCode && !modalsChangePassword &&  <ModalCode/>}
-                        { modalsChangePassword && <ModalPassword/>}
-                    </ModalsParent>
-                
+                modalsActiveForgot &&
+                <ModalsParent cb={() => changeOff()}>
+                    {!modalsForgotCode && <ModalForgot />}
+                    {modalsForgotCode && !modalsChangePassword && <ModalCode />}
+                    {modalsChangePassword && <ModalPassword />}
+                </ModalsParent>
+
             }
         </>
     )

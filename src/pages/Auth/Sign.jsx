@@ -47,7 +47,7 @@ const Sign = () => {
                                 <Input setValue={setName} value={name} id={v4()} type={"text"} holder={"Enter First Name"} />
                                 <Input setValue={setLastname} value={lastname} id={v4()} type={"text"} holder={"Enter Nick Name"} />
                                 <Input setValue={setEmail} value={email} id={v4()} type={"email"} holder={"Enter your Email"} />
-                                <Input setValue={setPassword} value={password} id={v4()} type={"text"} holder={"Enter your Password"} />
+                                <Input setValue={setPassword} value={password} id={v4()} type={"password"} holder={"Enter your Password"} />
                             </div>
                             <div className="form-login__buttons">
                                 <RightButton cb={() => {

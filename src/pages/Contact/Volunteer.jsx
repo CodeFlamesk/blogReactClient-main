@@ -107,6 +107,7 @@ const Volunteer = () => {
             delay: 2500,
             disableOnInteraction: false,
           }}
+
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -128,8 +129,9 @@ const Volunteer = () => {
 
 
 
+
       </div>
-      {/*  <SmallFooter /> */}
+      <SmallFooter />
     </div>
   );
 };
