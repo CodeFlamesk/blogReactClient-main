@@ -4,7 +4,7 @@ import axios from "axios";
 import "./game-info.scss";
 import Container from "components/Container/Container";
 import SmallFooter from "components/footer/SmallFooter";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const GameInfo = () => {
     const { gameId } = useParams();
     const [game, setGame] = useState(null);
@@ -15,7 +15,7 @@ const GameInfo = () => {
     const fetchUserById = async (userId) => {
         console.log("Шукаємо користувача за ID:", userId);
         try {
-            const response = await axios.get(`http://localhost:5000/api/user/users/${userId}`);
+            const response = await axios.get(`${API_URL}/api/user/users/${userId}`);
             return response.data;
         } catch (error) {
             console.error("Помилка при отриманні даних користувача:", error);
@@ -25,14 +25,14 @@ const GameInfo = () => {
 
     // Отримання гри
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/games/${gameId}`)
+        axios.get(`${API_URL}/api/games/${gameId}`)
             .then(({ data }) => setGame(data))
             .catch((error) => console.error("Помилка при отриманні даних гри:", error));
     }, [gameId]);
 
     // Отримання команд
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/teams?game=${gameId}`)
+        axios.get(`${API_URL}/api/teams?game=${gameId}`)
             .then(({ data }) => {
                 setTeams(data);
 
@@ -45,10 +45,10 @@ const GameInfo = () => {
 
                 if (playerIds.length > 0) {
 
-                    axios.get(`http://localhost:5000/api/user/users`, { params: { ids: playerIds } })
+                    axios.get(`${API_URL}/api/user/users`, { params: { ids: playerIds } })
                         .then(({ data }) => {
                             const usersMap = data.reduce((acc, user) => {
-                                acc[user._id] = user; // Зберігаємо користувача по його ID
+                                acc[user._id] = user;
                                 return acc;
                             }, {});
                             setUsers(usersMap);
@@ -71,7 +71,7 @@ const GameInfo = () => {
 
             if (missingUserIds.length > 0) {
                 console.log("Шукаємо користувачів за IDs:", missingUserIds); // Виводимо IDs, за якими робимо запит
-                axios.get(`http://localhost:5000/api/user/users`, { params: { ids: missingUserIds } })
+                axios.get(`${API_URL}/api/user/users`, { params: { ids: missingUserIds } })
                     .then(({ data }) => {
                         const newUsers = data.reduce((acc, user) => {
                             acc[user._id] = user;

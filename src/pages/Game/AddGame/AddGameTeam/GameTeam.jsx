@@ -4,6 +4,11 @@ import basketRole from '../img/basketRole.png';
 import CustomSelect from 'components/ui/Acordion/Accordion';
 import { useEffect, useState } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+    console.error("❌ API_URL is undefined. Check your .env file!");
+}
 const GameTeam = ({ gameId }) => {
     const [users, setUsers] = useState([]);
     const [teams, setTeams] = useState([{ id: Date.now(), team: null }]);
@@ -33,7 +38,7 @@ const GameTeam = ({ gameId }) => {
 
                 console.log(`🚀 Створення команди: ${team.team.value}`);
 
-                const response = await axios.post("http://localhost:5000/api/teams", {
+                const response = await axios.post(`${API_URL}/api/teams`, {
                     game: gameId,
                     color: team.team.value,
                     players: []
@@ -51,7 +56,7 @@ const GameTeam = ({ gameId }) => {
                 if (newTeamId && role.role && role.user) {
                     console.log(`🎭 Створення ролі ${role.role.value} для команди ${newTeamId}`);
 
-                    const roleResponse = await axios.post("http://localhost:5000/api/team-role", {
+                    const roleResponse = await axios.post(`${API_URL}/api/team-role`, {
                         role: role.role.value,
                         user: role.user.value,
                         teamId: newTeamId

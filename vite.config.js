@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import dotenv from 'dotenv'
 
-// https://vitejs.dev/config/
+dotenv.config()
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -18,4 +20,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
   },
+  define: {
+    'process.env': process.env
+  }
 })

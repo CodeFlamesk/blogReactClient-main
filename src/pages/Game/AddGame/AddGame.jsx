@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import "./add-game.scss";
 import basket from './img/basket.png';
 import GameTeam from "./AddGameTeam/GameTeam";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const AddGame = () => {
     const [images, setImages] = useState([]);
     const [previews, setPreviews] = useState([]);
@@ -75,7 +75,7 @@ const AddGame = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/games", {
+            const response = await fetch(`${API_URL}/api/games`, {
                 method: "POST",
                 body: formData
             });
