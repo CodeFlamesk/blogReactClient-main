@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import DashboardItemAddPodcast from "./DashboardItems/DashboardItemAddPodcast/DashboardItemAddPodcast";
+
 import DashboardPanel from "./DashboardPanel/DashboardPanel";
 
 import "./dashboard.scss"
@@ -12,11 +12,11 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <DashboardPanel/>
+            <DashboardPanel />
             <div className="dashboard__right">
-                                {panel === "dashboard" && <DashboardItemAddPodcast/>}
-                {panel === "news" && <DashboardAddNews/>}
-                {panel === "category" && <DashboardCategory/>}
+                {panel === "dashboard"}
+                {panel === "news" && <DashboardAddNews />}
+                {panel === "category" && <DashboardCategory />}
             </div>
         </div>
 
