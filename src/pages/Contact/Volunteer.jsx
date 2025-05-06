@@ -126,10 +126,6 @@ const Volunteer = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-
-
-
-
       </div>
       <SmallFooter />
     </div>

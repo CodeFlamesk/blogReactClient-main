@@ -84,7 +84,7 @@ const OurTeam = () => {
                 ) : users.length > 0 ? (
                     roles.map(renderRoleBlock)
                 ) : (
-                    <p>юзери пішли на перекур (No users found)</p>
+                    <p> (No users found)</p>
                 )}
             </div>
         </section>
