@@ -15,11 +15,12 @@ const Dashboard = () => {
             <div className="dashboard__right">
                 {panel === "dashboard"}
                 {panel === "news"}
-                {panel === "category" >}
+                {panel === "category"}
             </div>
         </div>
 
     )
 }
+
 
 export default Dashboard

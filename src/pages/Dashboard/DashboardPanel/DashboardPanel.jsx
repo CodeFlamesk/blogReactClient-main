@@ -7,7 +7,6 @@ import logo from "./img/logo-mobile.webp"
 import DashboardPanelButtons from "./DashboardPanelButtons/DashboardPanelButtons";
 import DashboardIcon from "./Icons/DashboardIcon";
 
-
 const DashboardPanel = () => {
 
     const dispatch = useDispatch();
@@ -16,18 +15,18 @@ const DashboardPanel = () => {
     return (
         <div className="dashboard__panel">
             <div className="dashboard__top">
-                <img width={126} height={35} alt="Logo" src={logo}/>
-                <ButtonAdmin to={"/"} cb={() => dispatch(changeClient())}/>
+                <img width={126} height={35} alt="Logo" src={logo} />
+                <ButtonAdmin to={"/"} cb={() => dispatch(changeClient())} />
             </div>
             <div className="dashboard__buttons">
                 <DashboardPanelButtons cb={() => dispatch(changePanel("dashboard"))} text={"Dashboard"}>
-                    <DashboardIcon/>
+                    <DashboardIcon />
                 </DashboardPanelButtons>
                 <DashboardPanelButtons cb={() => dispatch(changePanel("news"))} text={"News"}>
-                    <DashboardIcon/>
+                    <DashboardIcon />
                 </DashboardPanelButtons>
                 <DashboardPanelButtons cb={() => dispatch(changePanel("category"))} text={"Category"}>
-                    <DashboardIcon/>
+                    <DashboardIcon />
                 </DashboardPanelButtons>
             </div>
         </div>
